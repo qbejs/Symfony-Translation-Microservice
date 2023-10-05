@@ -143,22 +143,18 @@ abstract class BaseTest extends TestCase
         }
     }
 
+    protected function mockLanguageRepositoryFind(int $id, $return): void
+    {
+        $this->languageRepository->expects($this->once())
+            ->method('find')
+            ->with($id)
+            ->willReturn($return);
+    }
 
-//    protected function setExpectations($dto, $mockedTranslation): void
-//    {
-//        $this->translationFactory->expects($this->once())
-//            ->method('createFromDTO')
-//            ->with($dto)
-//            ->willReturn($mockedTranslation);
-//
-//        $this->translationRepository->expects($this->once())
-//            ->method('save')
-//            ->with($mockedTranslation);
-//
-//        $this->eventDispatcher->expects($this->once())
-//            ->method('dispatch')
-//            ->with($this->isInstanceOf(TranslationCreatedEvent::class), 'translation.created');
-//
-//
-//    }
+    protected function mockLanguageRepositoryFindAll(array $return): void
+    {
+        $this->languageRepository->expects($this->once())
+            ->method('findAll')
+            ->willReturn($return);
+    }
 }
