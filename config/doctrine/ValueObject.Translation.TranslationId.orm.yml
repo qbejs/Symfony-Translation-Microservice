@@ -1,0 +1,8 @@
+App\Domain\Models\ValueObject\Translation\TranslationId:
+    type: embeddable
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO

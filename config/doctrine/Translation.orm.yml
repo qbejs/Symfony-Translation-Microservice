@@ -1,0 +1,39 @@
+App\Domain\Models\Translation:
+    type: entity
+    table: translations
+    id:
+        id:
+            associationKey: true
+    embedded:
+        id:
+            class: App\Domain\Models\ValueObject\Translation\TranslationId
+            columnPrefix: false
+        translated:
+            class: App\Domain\Models\ValueObject\Translation\Translated
+            columnPrefix: false
+        sourceText:
+            class: App\Domain\Models\ValueObject\Translation\SourceText
+            columnPrefix: false
+    fields:
+        createdAt:
+            type: datetime
+        updatedAt:
+            type: datetime
+            nullable: true
+        deletedAt:
+            type: datetime
+            nullable: true
+    manyToOne:
+        language:
+            targetEntity: App\Domain\Models\Language
+            inversedBy: translations
+            joinColumn:
+                name: language_id
+                referencedColumnName: id
+        source:
+            targetEntity: App\Domain\Models\Language
+            inversedBy: translationsSource
+            joinColumn:
+                name: source_language_id
+                referencedColumnName: id
+

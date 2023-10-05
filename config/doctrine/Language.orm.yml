@@ -1,0 +1,30 @@
+App\Domain\Models\Language:
+    type: entity
+    table: languages
+    id:
+        id:
+            associationKey: true
+    embedded:
+        id:
+            class: App\Domain\Models\ValueObject\Language\LanguageId
+            columnPrefix: false
+        name:
+            class: App\Domain\Models\ValueObject\Language\LanguageName
+            columnPrefix: false
+        code:
+            class: App\Domain\Models\ValueObject\Language\LanguageCode
+            columnPrefix: false
+    fields:
+        availability:
+            type: language_availability
+    oneToMany:
+        translations:
+            targetEntity: App\Domain\Models\Translation
+            mappedBy: language
+            cascade: ["persist", "remove"]
+            orphanRemoval: true
+        translationsSource:
+            targetEntity: App\Domain\Models\Translation
+            mappedBy: source
+            cascade: [ "persist", "remove" ]
+            orphanRemoval: true

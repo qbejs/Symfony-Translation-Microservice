@@ -1,0 +1,6 @@
+App\Domain\Models\ValueObject\Translation\Translated:
+    type: embeddable
+    fields:
+        translated:
+            type: string
+            length: 255

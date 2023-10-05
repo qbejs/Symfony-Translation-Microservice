@@ -1,0 +1,6 @@
+App\Domain\Models\ValueObject\Language\LanguageName:
+    type: embeddable
+    fields:
+        name:
+            type: string
+            length: 255
