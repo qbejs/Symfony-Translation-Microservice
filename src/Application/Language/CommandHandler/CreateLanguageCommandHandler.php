@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Application\Language\CommandHandler;
+
+use App\Application\Language\Command\CreateLanguageCommand;
+use App\Application\Language\DTO\LanguageDTO;
+use App\Application\Language\Event\LanguageCreatedEvent;
+use App\Domain\Factory\LanguageFactory;
+use App\Domain\Interface\LanguageRepositoryInterface;
+use App\Domain\Models\Language;
+use App\Infrastructure\Doctrine\Repository\LanguageRepository;
+use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
+use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+
+#[AsMessageHandler]
+class CreateLanguageCommandHandler
+{
+    private LanguageFactory $languageFactory;
+    private LanguageRepositoryInterface $languageRepository;
+    private EventDispatcherInterface $eventDispatcher;
+
+    public function __construct(LanguageFactory $languageFactory, LanguageRepository $languageRepository, EventDispatcherInterface $eventDispatcher)
+    {
+        $this->languageFactory = $languageFactory;
+        $this->languageRepository = $languageRepository;
+        $this->eventDispatcher = $eventDispatcher;
+    }
+
+    public function __invoke(CreateLanguageCommand $command)
+    {
+        $dto = new LanguageDTO();
+        $dto->name = $command->name;
+        $dto->code = $command->code;
+        $dto->public = $command->public;
+        $dto->microservice = $command->microservice;
+        $language = $this->languageFactory->createFromDTO($dto);
+        $this->languageRepository->save($language);
+
+        $event = new LanguageCreatedEvent($language->getId()->getValue());
+        $this->eventDispatcher->dispatch($event, 'language.created');
+    }
+}
