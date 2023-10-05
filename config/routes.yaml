@@ -1,0 +1,7 @@
+language_module:
+    resource: '../src/Application/Language/Controller/'
+    type: attribute
+
+translator_module:
+    resource: '../src/Application/Translator/Controller/'
+    type: attribute

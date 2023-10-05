@@ -1,0 +1,44 @@
+# config/packages/messenger.yaml
+framework:
+    messenger:
+        default_bus: messenger.bus.commands
+
+        transports:
+            async:
+                dsn: 'doctrine://default'
+                options:
+                    queue_name: async_queue
+            sync:
+                dsn: 'sync://'
+                options:
+                    queue_name: sync_queue
+
+
+        buses:
+            messenger.bus.commands:
+                middleware:
+                    - messenger.middleware.validation
+                    - messenger.middleware.doctrine_transaction
+            messenger.bus.events:
+                middleware:
+                    - messenger.middleware.validation
+                    - messenger.middleware.doctrine_transaction
+            messenger.bus.queries:
+                middleware:
+                    - messenger.middleware.validation
+                    - messenger.middleware.doctrine_transaction
+
+        routing:
+            # Command
+            'App\Application\Language\Command\CreateLanguageCommand': sync
+            'App\Application\Language\Command\UpdateLanguageCommand': sync
+            'App\Application\Language\Command\DeleteLanguageCommand': sync
+            'App\Application\Translator\Command\CreateTranslationCommand': sync
+#            # Query
+            'App\Application\Language\Query\GetLanguageByIdQuery': sync
+            'App\Application\Language\Query\GetLanguagesQuery': sync
+            # Event
+            'App\Application\Language\Event\LanguageCreatedEvent': async
+            'App\Application\Language\Event\LanguageUpdatedEvent': async
+            'App\Application\Language\Event\LanguageDeletedEvent': async
+            'App\Application\Translator\Event\TranslationCreatedEvent': async
