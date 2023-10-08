@@ -1,0 +1,6 @@
+App\Domain\Models\ValueObject\User\Roles:
+    type: embeddable
+    fields:
+        values:
+            type: json
+            column: roles

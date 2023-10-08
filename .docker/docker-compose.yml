@@ -29,6 +29,14 @@ services:
         ports:
             - "5672:5672"
             - "15672:15672"
+    redis:
+        image: redis:latest
+        ports:
+            - "6379:6379"
+        networks:
+            - symfony
+        volumes:
+            - "redis_data:/data"
     nginx:
         build:
             context: ./nginx
@@ -45,6 +53,7 @@ services:
 
 volumes:
     db_app:
+    redis_data:
 
 networks:
     symfony:

@@ -45,6 +45,19 @@ services:
     _instanceof:
         App\Application\Translator\Interface\TranslatorInterface:
             tags: ['app.translator.provider']
+        App\Infrastructure\Security\Interface\TokenManagerInterface:
+            tags: ['app.token.manager']
+        App\Infrastructure\Security\Interface\BlacklistManagerInterface:
+            tags: ['app.blacklist.manager']
+
+    App\Infrastructure\Security\Adapter\BlacklistManager\RedisBlacklistAdapter:
+        arguments:
+            $redisConnectionString: '%env(REDIS_URL)%'
+
+    app.application_jwt_authenticator:
+        class: App\Infrastructure\Security\ApplicationJWTAuthenticator
+        parent: lexik_jwt_authentication.security.jwt_authenticator
+
 
     # Factory
     App\Domain\Factory\TranslationFactory:

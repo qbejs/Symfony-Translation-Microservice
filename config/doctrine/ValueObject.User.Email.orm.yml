@@ -1,0 +1,8 @@
+App\Domain\Models\ValueObject\User\Email:
+    type: embeddable
+    fields:
+        value:
+            type: string
+            length: 150
+            column: email
+            unique: true
