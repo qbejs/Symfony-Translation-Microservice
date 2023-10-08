@@ -25,6 +25,8 @@ RUN apt-get update && apt-get install -y \
 
 RUN docker-php-ext-enable amqp
 
+RUN pecl install redis && docker-php-ext-enable redis
+
 RUN docker-php-ext-configure gd --with-jpeg --with-freetype 
 
 RUN docker-php-ext-install \
