@@ -9,6 +9,7 @@
     "doctrine/doctrine-bundle": "2.5.*",
     "doctrine/doctrine-migrations-bundle": "3.2.*",
     "doctrine/orm": "2.11.*",
+    "lexik/jwt-authentication-bundle": "^2.19",
     "prugala/symfony-request-dto": "^1.3",
     "stof/doctrine-extensions-bundle": "^1.7",
     "symfony-bundles/json-request-bundle": "^4.1",
