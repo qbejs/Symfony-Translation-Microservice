@@ -54,6 +54,11 @@ services:
         arguments:
             $redisConnectionString: '%env(REDIS_URL)%'
 
+    app.application_jwt_authenticator:
+        class: App\Infrastructure\Security\ApplicationJWTAuthenticator
+        parent: lexik_jwt_authentication.security.jwt_authenticator
+
+
     # Factory
     App\Domain\Factory\TranslationFactory:
         autowire: false
