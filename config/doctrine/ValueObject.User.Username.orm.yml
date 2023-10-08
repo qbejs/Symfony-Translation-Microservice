@@ -1,0 +1,7 @@
+App\Domain\Models\ValueObject\User\Username:
+    type: embeddable
+    fields:
+        value:
+            type: string
+            length: 100
+            column: username
