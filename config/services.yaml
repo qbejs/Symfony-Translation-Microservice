@@ -1,3 +1,7 @@
+imports:
+    - { resource: 'services/repositories.yaml'}
+    - { resource: 'services/serializers.yaml'}
+
 parameters:
 
 services:
@@ -74,72 +78,7 @@ services:
 
     App\Domain\Factory\Interface\TranslationFactoryInterface: '@App\Domain\Factory\Decorator\TranslationFactoryDecorator'
 
-
     App\Domain\Factory\Decorator\LanguageFactoryDecorator:
         arguments:
             $innerFactory: '@App\Domain\Factory\LanguageFactory'
             $languageRepository: '@App\Infrastructure\Doctrine\Repository\LanguageRepository'
-
-    # Repository
-    App\Domain\Interface\LanguageRepositoryInterface:
-        class: App\Infrastructure\Doctrine\Repository\LanguageRepository
-        arguments:
-            $entityManager: '@doctrine.orm.entity_manager'
-
-    App\Domain\Interface\TranslationRepositoryInterface:
-        class: App\Infrastructure\Doctrine\Repository\TranslationRepository
-        arguments:
-            $entityManager: '@doctrine.orm.entity_manager'
-
-    App\Domain\Interface\UserRepositoryInterface:
-        class: App\Infrastructure\Doctrine\Repository\UserRepository
-        arguments:
-            $entityManager: '@doctrine.orm.entity_manager'
-
-    # Serializer
-    App\Domain\Models\Normalizer\LanguageNormalizer:
-        class: App\Domain\Models\Normalizer\LanguageNormalizer
-        tags:
-            - { name: serializer.normalizer, priority: 128 }
-
-    App\Domain\Models\Normalizer\TranslationNormalizer:
-        class: App\Domain\Models\Normalizer\TranslationNormalizer
-        arguments:
-            $translatorService: '@App\Application\Translator\Service\TranslatorService'
-        tags:
-            - { name: serializer.normalizer, priority: 128 }
-
-    App\Domain\Models\ValueObject\Language\Normalizer\LanguageIdNormalizer:
-        class: App\Domain\Models\ValueObject\Language\Normalizer\LanguageIdNormalizer
-        tags:
-            - { name: serializer.normalizer, priority: 128 }
-
-    App\Domain\Models\ValueObject\Language\Normalizer\LanguageNameNormalizer:
-        class: App\Domain\Models\ValueObject\Language\Normalizer\LanguageNameNormalizer
-        tags:
-            - { name: serializer.normalizer, priority: 128 }
-
-    App\Domain\Models\ValueObject\Language\Normalizer\LanguageCodeNormalizer:
-        class: App\Domain\Models\ValueObject\Language\Normalizer\LanguageCodeNormalizer
-        tags:
-            - { name: serializer.normalizer, priority: 128 }
-
-    App\Domain\Models\ValueObject\Language\Normalizer\LanguageAvailabilityNormalizer:
-        class: App\Domain\Models\ValueObject\Language\Normalizer\LanguageAvailabilityNormalizer
-        tags:
-            - { name: serializer.normalizer, priority: 128 }
-
-    App\Domain\Models\ValueObject\Translation\Normalizer\TranslationIdNormalizer:
-        class: App\Domain\Models\ValueObject\Translation\Normalizer\TranslationIdNormalizer
-        tags:
-            - { name: serializer.normalizer, priority: 128 }
-
-    App\Domain\Models\ValueObject\Translation\Normalizer\TranslatedNormalizer:
-        class: App\Domain\Models\ValueObject\Translation\Normalizer\TranslatedNormalizer
-        tags:
-            - { name: serializer.normalizer, priority: 128 }
-
-    App\Domain\Models\ValueObject\Translation\Normalizer\SourceTextNormalizer:
-        class: App\Domain\Models\ValueObject\Translation\Normalizer\SourceTextNormalizer
-        tags:
-            - { name: serializer.normalizer, priority: 128 }

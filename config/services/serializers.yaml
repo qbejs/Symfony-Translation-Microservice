@@ -1,0 +1,48 @@
+# Serializer
+services:
+    App\Domain\Models\Normalizer\LanguageNormalizer:
+        class: App\Domain\Models\Normalizer\LanguageNormalizer
+        tags:
+            - { name: serializer.normalizer, priority: 128 }
+
+    App\Domain\Models\Normalizer\TranslationNormalizer:
+        class: App\Domain\Models\Normalizer\TranslationNormalizer
+        arguments:
+            $translatorService: '@App\Application\Translator\Service\TranslatorService'
+        tags:
+            - { name: serializer.normalizer, priority: 128 }
+
+    App\Domain\Models\ValueObject\Language\Normalizer\LanguageIdNormalizer:
+        class: App\Domain\Models\ValueObject\Language\Normalizer\LanguageIdNormalizer
+        tags:
+            - { name: serializer.normalizer, priority: 128 }
+
+    App\Domain\Models\ValueObject\Language\Normalizer\LanguageNameNormalizer:
+        class: App\Domain\Models\ValueObject\Language\Normalizer\LanguageNameNormalizer
+        tags:
+            - { name: serializer.normalizer, priority: 128 }
+
+    App\Domain\Models\ValueObject\Language\Normalizer\LanguageCodeNormalizer:
+        class: App\Domain\Models\ValueObject\Language\Normalizer\LanguageCodeNormalizer
+        tags:
+            - { name: serializer.normalizer, priority: 128 }
+
+    App\Domain\Models\ValueObject\Language\Normalizer\LanguageAvailabilityNormalizer:
+        class: App\Domain\Models\ValueObject\Language\Normalizer\LanguageAvailabilityNormalizer
+        tags:
+            - { name: serializer.normalizer, priority: 128 }
+
+    App\Domain\Models\ValueObject\Translation\Normalizer\TranslationIdNormalizer:
+        class: App\Domain\Models\ValueObject\Translation\Normalizer\TranslationIdNormalizer
+        tags:
+            - { name: serializer.normalizer, priority: 128 }
+
+    App\Domain\Models\ValueObject\Translation\Normalizer\TranslatedNormalizer:
+        class: App\Domain\Models\ValueObject\Translation\Normalizer\TranslatedNormalizer
+        tags:
+            - { name: serializer.normalizer, priority: 128 }
+
+    App\Domain\Models\ValueObject\Translation\Normalizer\SourceTextNormalizer:
+        class: App\Domain\Models\ValueObject\Translation\Normalizer\SourceTextNormalizer
+        tags:
+            - { name: serializer.normalizer, priority: 128 }
