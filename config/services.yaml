@@ -55,7 +55,7 @@ services:
             $redisConnectionString: '%env(REDIS_URL)%'
 
     app.application_jwt_authenticator:
-        class: App\Infrastructure\Security\ApplicationJWTAuthenticator
+        class: App\Infrastructure\Security\Authenticator\ApplicationJWTAuthenticator
         parent: lexik_jwt_authentication.security.jwt_authenticator
 
 
