@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Security;
+namespace App\Infrastructure\Security\Authenticator;
 
 use App\Domain\Models\User;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTAuthenticatedEvent;
