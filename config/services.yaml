@@ -91,6 +91,11 @@ services:
         arguments:
             $entityManager: '@doctrine.orm.entity_manager'
 
+    App\Domain\Interface\UserRepositoryInterface:
+        class: App\Infrastructure\Doctrine\Repository\UserRepository
+        arguments:
+            $entityManager: '@doctrine.orm.entity_manager'
+
     # Serializer
     App\Domain\Models\Normalizer\LanguageNormalizer:
         class: App\Domain\Models\Normalizer\LanguageNormalizer
