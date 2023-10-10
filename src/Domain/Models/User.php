@@ -8,43 +8,46 @@ use App\Domain\Models\ValueObject\User\Password;
 use App\Domain\Models\ValueObject\User\Roles;
 use App\Domain\Models\ValueObject\User\UserId;
 use App\Domain\Models\ValueObject\User\Username;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class User implements UserInterface, UpdatedAtInterface
+class User implements UserInterface, UpdatedAtInterface, PasswordAuthenticatedUserInterface
 {
-    private UserId $id;
+    private ?UserId $id;
     private Username $username;
-    private Password $password;
+    private ?Password $password;
     private Email $email;
     private Roles $roles;
     private \DateTime $createdAt;
     private \DateTime $updatedAt;
-    private \DateTime $deletedAt;
+    private ?\DateTime $deletedAt;
 
     public function __construct(
-        UserId $id,
+        ?UserId $id,
         Username $username,
-        Password $password,
+        ?Password $password,
         Email $email,
+        Roles $roles,
         \DateTime $createdAt,
         \DateTime $updatedAt,
-        \DateTime $deletedAt
+        ?\DateTime $deletedAt
     ) {
         $this->id = $id;
         $this->username = $username;
         $this->password = $password;
         $this->email = $email;
+        $this->roles = $roles;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->deletedAt = $deletedAt;
     }
 
-    public function getId(): UserId
+    public function getId(): ?UserId
     {
         return $this->id;
     }
 
-    public function setId(UserId $id): void
+    public function setId(?UserId $id): void
     {
         $this->id = $id;
     }
@@ -59,12 +62,17 @@ class User implements UserInterface, UpdatedAtInterface
         $this->username = $username;
     }
 
-    public function getPassword(): Password
+    public function getPassword(): ?string
+    {
+        return $this->password->getValue();
+    }
+
+    public function getPasswordObject(): ?Password
     {
         return $this->password;
     }
 
-    public function setPassword(Password $password): void
+    public function setPassword(?Password $password): void
     {
         $this->password = $password;
     }
@@ -89,12 +97,12 @@ class User implements UserInterface, UpdatedAtInterface
         $this->createdAt = $createdAt;
     }
 
-    public function getDeletedAt(): \DateTime
+    public function getDeletedAt(): ?\DateTime
     {
         return $this->deletedAt;
     }
 
-    public function setDeletedAt(\DateTime $deletedAt): void
+    public function setDeletedAt(?\DateTime $deletedAt): void
     {
         $this->deletedAt = $deletedAt;
     }

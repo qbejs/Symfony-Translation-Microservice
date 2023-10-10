@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Infrastructure\Doctrine\Repository;
+namespace App\Infrastructure\Repository\Doctrine;
 
 use App\Domain\Interface\LanguageRepositoryInterface;
+use App\Domain\Interface\TranslationRepositoryInterface;
 use App\Domain\Models\Language;
+use App\Domain\Models\Translation;
 use Doctrine\ORM\EntityManagerInterface;
 
-class LanguageRepository implements LanguageRepositoryInterface
+class TranslationRepository implements TranslationRepositoryInterface
 {
     private EntityManagerInterface $entityManager;
 
@@ -15,23 +17,23 @@ class LanguageRepository implements LanguageRepositoryInterface
         $this->entityManager = $entityManager;
     }
 
-    public function find($id): ?Language
+    public function find($id): ?Translation
     {
-        return $this->entityManager->getRepository(Language::class)->find($id);
+        return $this->entityManager->getRepository(Translation::class)->find($id);
     }
 
     public function findAll(): array
     {
-        return $this->entityManager->getRepository(Language::class)->findAll();
+        return $this->entityManager->getRepository(Translation::class)->findAll();
     }
 
-    public function save(Language $language): void
+    public function save(Translation $language): void
     {
         $this->entityManager->persist($language);
         $this->entityManager->flush();
     }
 
-    public function delete(Language $language): void
+    public function delete(Translation $language): void
     {
         $this->entityManager->remove($language);
         $this->entityManager->flush();

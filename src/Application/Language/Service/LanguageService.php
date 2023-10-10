@@ -21,7 +21,13 @@ class LanguageService implements ServiceInterface
     {
     }
 
-    public function createLanguage(LanguageDTO $dto): bool
+    public function createLanguage(string $name, string $code, bool $public, bool $microservice): bool
+    {
+        $command = new CreateLanguageCommand($name, $code, $public, $microservice);
+        return (bool) $this->messageBus->dispatch($command);
+    }
+
+    public function createLanguageFromDTO(LanguageDTO $dto): bool
     {
         $command = new CreateLanguageCommand($dto->name, $dto->code, $dto->public, $dto->microservice);
         return (bool) $this->messageBus->dispatch($command);

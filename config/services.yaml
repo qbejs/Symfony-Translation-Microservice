@@ -63,22 +63,5 @@ services:
         parent: lexik_jwt_authentication.security.jwt_authenticator
 
 
-    # Factory
-    App\Domain\Factory\TranslationFactory:
-        autowire: false
-        arguments: [ ]
 
-    # Decorator
-    App\Domain\Factory\Decorator\TranslationFactoryDecorator:
-        autowire: false
-        arguments:
-           $innerFactory: '@App\Domain\Factory\TranslationFactory'
-           $languageRepository: '@App\Infrastructure\Doctrine\Repository\LanguageRepository'
-           $translationRepository: '@App\Infrastructure\Doctrine\Repository\TranslationRepository'
 
-    App\Domain\Factory\Interface\TranslationFactoryInterface: '@App\Domain\Factory\Decorator\TranslationFactoryDecorator'
-
-    App\Domain\Factory\Decorator\LanguageFactoryDecorator:
-        arguments:
-            $innerFactory: '@App\Domain\Factory\LanguageFactory'
-            $languageRepository: '@App\Infrastructure\Doctrine\Repository\LanguageRepository'

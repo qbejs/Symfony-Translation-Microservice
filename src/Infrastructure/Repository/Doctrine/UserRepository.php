@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Doctrine\Repository;
+namespace App\Infrastructure\Repository\Doctrine;
 
 use App\Domain\Interface\UserRepositoryInterface;
 use App\Domain\Models\User;

@@ -19,7 +19,7 @@ use App\Domain\Models\ValueObject\Language\LanguageName;
 use App\Domain\Models\ValueObject\Translation\SourceText;
 use App\Domain\Models\ValueObject\Translation\Translated;
 use App\Domain\Models\ValueObject\Translation\TranslationId;
-use App\Infrastructure\Doctrine\Repository\LanguageRepository;
+use App\Infrastructure\Repository\Doctrine\LanguageRepository;
 use PHPUnit\Framework\MockObject\MockClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
