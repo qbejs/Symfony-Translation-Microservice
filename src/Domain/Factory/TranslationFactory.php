@@ -27,12 +27,6 @@ class TranslationFactory implements TranslationFactoryInterface
             $targetLanguage
         );
 
-        if ($dto->id) {
-            $reflection = new \ReflectionClass($translation);
-            $property = $reflection->getProperty('id');
-            $property->setValue($translation, new TranslationId($dto->id));
-        }
-
         if ($dto->createdAt) {
             $translation->setCreatedAt(new \DateTime($dto->createdAt));
         }
@@ -63,10 +57,7 @@ class TranslationFactory implements TranslationFactoryInterface
             new SourceText($source),
             $source ? new Language(new LanguageId($source), null, null, null) : null,
             $translated ? new Translated($translated) : null,
-            $id ? new Language(new LanguageId($id), null, null, null, null) : null,
-            $createdAt,
-            $updatedAt,
-            $deletedAt
+            $id ? new Language(new LanguageId($id), null, null, null, null) : null
         );
     }
 }

@@ -12,23 +12,23 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class User implements UserInterface, UpdatedAtInterface
 {
-    private UserId $id;
+    private ?UserId $id;
     private Username $username;
     private Password $password;
     private Email $email;
     private Roles $roles;
     private \DateTime $createdAt;
     private \DateTime $updatedAt;
-    private \DateTime $deletedAt;
+    private ?\DateTime $deletedAt;
 
     public function __construct(
-        UserId $id,
+        ?UserId $id,
         Username $username,
         Password $password,
         Email $email,
         \DateTime $createdAt,
         \DateTime $updatedAt,
-        \DateTime $deletedAt
+        ?\DateTime $deletedAt
     ) {
         $this->id = $id;
         $this->username = $username;
@@ -39,12 +39,12 @@ class User implements UserInterface, UpdatedAtInterface
         $this->deletedAt = $deletedAt;
     }
 
-    public function getId(): UserId
+    public function getId(): ?UserId
     {
         return $this->id;
     }
 
-    public function setId(UserId $id): void
+    public function setId(?UserId $id): void
     {
         $this->id = $id;
     }
@@ -89,12 +89,12 @@ class User implements UserInterface, UpdatedAtInterface
         $this->createdAt = $createdAt;
     }
 
-    public function getDeletedAt(): \DateTime
+    public function getDeletedAt(): ?\DateTime
     {
         return $this->deletedAt;
     }
 
-    public function setDeletedAt(\DateTime $deletedAt): void
+    public function setDeletedAt(?\DateTime $deletedAt): void
     {
         $this->deletedAt = $deletedAt;
     }
