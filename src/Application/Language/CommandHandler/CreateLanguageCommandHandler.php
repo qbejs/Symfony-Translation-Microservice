@@ -35,6 +35,7 @@ class CreateLanguageCommandHandler
         $dto->code = $command->code;
         $dto->public = $command->public;
         $dto->microservice = $command->microservice;
+
         $language = $this->languageFactory->createFromDTO($dto);
         $this->languageRepository->save($language);
 
