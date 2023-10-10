@@ -1,16 +1,16 @@
 # Repository
 services:
     App\Domain\Interface\LanguageRepositoryInterface:
-        class: App\Infrastructure\Doctrine\Repository\LanguageRepository
+        class: App\Infrastructure\Repository\Doctrine\LanguageRepository
         arguments:
             $entityManager: '@doctrine.orm.entity_manager'
 
     App\Domain\Interface\TranslationRepositoryInterface:
-        class: App\Infrastructure\Doctrine\Repository\TranslationRepository
+        class: App\Infrastructure\Repository\Doctrine\TranslationRepository
         arguments:
             $entityManager: '@doctrine.orm.entity_manager'
 
     App\Domain\Interface\UserRepositoryInterface:
-        class: App\Infrastructure\Doctrine\Repository\UserRepository
+        class: App\Infrastructure\Repository\Doctrine\UserRepository
         arguments:
             $entityManager: '@doctrine.orm.entity_manager'

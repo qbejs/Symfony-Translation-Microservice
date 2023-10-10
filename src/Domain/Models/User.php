@@ -8,13 +8,14 @@ use App\Domain\Models\ValueObject\User\Password;
 use App\Domain\Models\ValueObject\User\Roles;
 use App\Domain\Models\ValueObject\User\UserId;
 use App\Domain\Models\ValueObject\User\Username;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class User implements UserInterface, UpdatedAtInterface
+class User implements UserInterface, UpdatedAtInterface, PasswordAuthenticatedUserInterface
 {
     private ?UserId $id;
     private Username $username;
-    private Password $password;
+    private ?Password $password;
     private Email $email;
     private Roles $roles;
     private \DateTime $createdAt;
@@ -24,8 +25,9 @@ class User implements UserInterface, UpdatedAtInterface
     public function __construct(
         ?UserId $id,
         Username $username,
-        Password $password,
+        ?Password $password,
         Email $email,
+        Roles $roles,
         \DateTime $createdAt,
         \DateTime $updatedAt,
         ?\DateTime $deletedAt
@@ -34,6 +36,7 @@ class User implements UserInterface, UpdatedAtInterface
         $this->username = $username;
         $this->password = $password;
         $this->email = $email;
+        $this->roles = $roles;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->deletedAt = $deletedAt;
@@ -59,12 +62,17 @@ class User implements UserInterface, UpdatedAtInterface
         $this->username = $username;
     }
 
-    public function getPassword(): Password
+    public function getPassword(): ?string
+    {
+        return $this->password->getValue();
+    }
+
+    public function getPasswordObject(): ?Password
     {
         return $this->password;
     }
 
-    public function setPassword(Password $password): void
+    public function setPassword(?Password $password): void
     {
         $this->password = $password;
     }
