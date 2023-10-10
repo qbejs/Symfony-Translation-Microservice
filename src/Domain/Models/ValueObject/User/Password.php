@@ -8,10 +8,6 @@ class Password
 
     public function __construct(string $value)
     {
-        if (strlen($value) < 8) {
-            throw new \InvalidArgumentException("Password must have at least 8 characters.");
-        }
-
         $this->value = $value;
     }
 

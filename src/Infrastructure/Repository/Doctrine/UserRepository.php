@@ -5,6 +5,7 @@ namespace App\Infrastructure\Repository\Doctrine;
 use App\Domain\Interface\UserRepositoryInterface;
 use App\Domain\Models\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -36,4 +37,19 @@ class UserRepository implements UserRepositoryInterface
         $this->entityManager->remove($user);
         $this->entityManager->flush();
     }
+
+    /**
+     * @throws NonUniqueResultException
+     */
+    public function findOneByEmail($email): ?User
+    {
+        return $this->entityManager->createQueryBuilder('u')
+            ->select('u')
+            ->from(User::class, 'u')
+            ->where('u.email.email = :email')
+            ->setParameter('email', $email)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 }

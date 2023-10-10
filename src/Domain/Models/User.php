@@ -77,9 +77,9 @@ class User implements UserInterface, UpdatedAtInterface, PasswordAuthenticatedUs
         $this->password = $password;
     }
 
-    public function getEmail(): Email
+    public function getEmail(): string
     {
-        return $this->email;
+        return $this->email->getValue();
     }
 
     public function setEmail(Email $email): void
