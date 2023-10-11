@@ -1,0 +1,4 @@
+services:
+    App\Infrastructure\Security\Adapter\BlacklistManager\RedisBlacklistAdapter:
+        arguments:
+            $redisConnectionString: '%env(REDIS_URL)%'

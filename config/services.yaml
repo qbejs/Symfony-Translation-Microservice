@@ -1,6 +1,10 @@
 imports:
     - { resource: 'services/repositories.yaml'}
     - { resource: 'services/serializers.yaml'}
+    - { resource: 'services/controllers.yaml'}
+    - { resource: 'services/interfaces.yaml'}
+    - { resource: 'services/blacklist_manager.yaml'}
+    - { resource: 'services/security.yaml'}
 
 parameters:
 
@@ -33,38 +37,15 @@ services:
             - '../src/Infrastructure/{DependencyInjection,Entity,Migrations,Tests}'
         tags: [ 'app.infrastructure' ]
 
-    App\Application\Language\Controller\:
-        resource: '../src/Application/Language/Controller/'
-        tags: [ 'controller.service_arguments' ]
-
-    App\Application\Translator\Controller\:
-        resource: '../src/Application/Translator/Controller/'
-        tags: [ 'controller.service_arguments' ]
-
     App\Infrastructure\Doctrine\Persistence\Listener\UpdatedAtListener:
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
             - { name: doctrine.event_listener, event: prePersist }
 
-    _instanceof:
-        App\Application\Translator\Interface\TranslatorInterface:
-            tags: ['app.translator.provider']
-        App\Infrastructure\Security\Interface\TokenManagerInterface:
-            tags: ['app.token.manager']
-        App\Infrastructure\Security\Interface\BlacklistManagerInterface:
-            tags: ['app.blacklist.manager']
 
-    App\Infrastructure\Security\Adapter\BlacklistManager\RedisBlacklistAdapter:
-        arguments:
-            $redisConnectionString: '%env(REDIS_URL)%'
 
-    app.application_jwt_authenticator:
-        class: App\Infrastructure\Security\Authenticator\ApplicationJWTAuthenticator
-        parent: lexik_jwt_authentication.security.jwt_authenticator
 
-    App\Infrastructure\Security\Provider\ValueObjectUserProvider:
-        arguments:
-            $userRepository: '@App\Domain\Interface\UserRepositoryInterface'
+
 
 
 
