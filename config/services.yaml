@@ -62,6 +62,9 @@ services:
         class: App\Infrastructure\Security\Authenticator\ApplicationJWTAuthenticator
         parent: lexik_jwt_authentication.security.jwt_authenticator
 
+    App\Infrastructure\Security\Provider\ValueObjectUserProvider:
+        arguments:
+            $userRepository: '@App\Domain\Interface\UserRepositoryInterface'
 
 
 

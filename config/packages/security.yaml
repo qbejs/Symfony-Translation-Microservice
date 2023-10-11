@@ -4,9 +4,7 @@ security:
 
     providers:
         app_user_provider:
-            entity:
-                class: App\Domain\Models\User
-                property: email
+            id: App\Infrastructure\Security\Provider\ValueObjectUserProvider
 
     firewalls:
         dev:

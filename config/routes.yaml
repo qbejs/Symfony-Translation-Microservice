@@ -5,3 +5,10 @@ language_module:
 translator_module:
     resource: '../src/Application/Translator/Controller/'
     type: attribute
+
+user_module:
+    resource: '../src/Application/User/Controller/'
+    type: attribute
+
+api_login_check:
+    path: /api/auth/login_check

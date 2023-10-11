@@ -21,4 +21,4 @@ lexik_jwt_authentication:
             samesite: none
             secure: true
 
-    remove_token_from_body_when_cookies_used: true
+    remove_token_from_body_when_cookies_used: false
