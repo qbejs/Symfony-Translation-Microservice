@@ -1,0 +1,6 @@
+App\Domain\Models\ValueObject\NotificationType\NotificationTypeContent:
+    type: embeddable
+    fields:
+        content:
+            type: string
+            length: 100

@@ -1,24 +1,21 @@
-App\Domain\Models\User:
+App\Domain\Models\NotificationType:
     type: entity
-    table: users
+    table: notifications_types
     id:
         id:
             associationKey: true
     embedded:
         id:
-            class: App\Domain\Models\ValueObject\User\UserId
+            class: App\Domain\Models\ValueObject\NotificationType\NotificationTypeId
             columnPrefix: false
-        username:
-            class: App\Domain\Models\ValueObject\User\Username
+        name:
+            class: App\Domain\Models\ValueObject\NotificationType\NotificationTypeName
             columnPrefix: false
-        password:
-            class: App\Domain\Models\ValueObject\User\Password
+        subject:
+            class: App\Domain\Models\ValueObject\NotificationType\NotificationTypeSubject
             columnPrefix: false
-        email:
-            class: App\Domain\Models\ValueObject\User\Email
-            columnPrefix: false
-        roles:
-            class: App\Domain\Models\ValueObject\User\Roles
+        content:
+            class: App\Domain\Models\ValueObject\NotificationType\NotificationTypeContent
             columnPrefix: false
 
     fields:
@@ -34,5 +31,5 @@ App\Domain\Models\User:
     oneToMany:
         notifications:
             targetEntity: Notification
-            mappedBy: recipient
+            mappedBy: type
 

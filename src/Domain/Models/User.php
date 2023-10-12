@@ -8,6 +8,8 @@ use App\Domain\Models\ValueObject\User\Password;
 use App\Domain\Models\ValueObject\User\Roles;
 use App\Domain\Models\ValueObject\User\UserId;
 use App\Domain\Models\ValueObject\User\Username;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -18,9 +20,10 @@ class User implements UserInterface, UpdatedAtInterface, PasswordAuthenticatedUs
     private ?Password $password;
     private Email $email;
     private Roles $roles;
-    private \DateTime $createdAt;
-    private \DateTime $updatedAt;
-    private ?\DateTime $deletedAt;
+    private \DateTimeInterface $createdAt;
+    private \DateTimeInterface $updatedAt;
+    private ?\DateTimeInterface $deletedAt;
+    private Collection $notifications;
 
     public function __construct(
         ?UserId $id,
@@ -40,6 +43,7 @@ class User implements UserInterface, UpdatedAtInterface, PasswordAuthenticatedUs
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->deletedAt = $deletedAt;
+        $this->notifications = new ArrayCollection();
     }
 
     public function getId(): ?UserId
@@ -136,7 +140,7 @@ class User implements UserInterface, UpdatedAtInterface, PasswordAuthenticatedUs
         return $this->email->getValue();
     }
 
-    public function setUpdatedAt(\DateTime $updatedAt): void
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
@@ -145,4 +149,29 @@ class User implements UserInterface, UpdatedAtInterface, PasswordAuthenticatedUs
     {
         return $this->updatedAt;
     }
+
+    /**
+     * @return Notification[]
+     */
+    public function getNotifications(): array
+    {
+        return $this->notifications->toArray();
+    }
+
+    public function addNotification(Notification $notification): void
+    {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications->add($notification);
+            $notification->setRecipient($this);
+        }
+    }
+
+    public function removeNotification(Notification $notification): void
+    {
+        if ($this->notifications->contains($notification)) {
+            $this->notifications->removeElement($notification);
+            $notification->setRecipient(null);
+        }
+    }
+
 }

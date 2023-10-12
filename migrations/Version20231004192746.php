@@ -14,7 +14,7 @@ final class Version20231004192746 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Add source text to translations';
     }
 
     public function up(Schema $schema): void

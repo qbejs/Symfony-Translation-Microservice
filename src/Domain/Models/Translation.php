@@ -14,11 +14,11 @@ class Translation implements UpdatedAtInterface
     #[Groups(['translation'])]
     private TranslationId $id;
     #[Groups(['translation'])]
-    private \DateTime $createdAt;
+    private \DateTimeInterface $createdAt;
     #[Groups(['translation'])]
-    private \DateTime $updatedAt;
+    private \DateTimeInterface $updatedAt;
     #[Groups(['translation'])]
-    private ?\DateTime $deletedAt;
+    private ?\DateTimeInterface $deletedAt;
     #[Groups(['translation'])]
     private Language $source;
 
@@ -67,27 +67,27 @@ class Translation implements UpdatedAtInterface
         $this->id = $id;
     }
 
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt): void
+    public function setCreatedAt(\DateTimeInterface $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
 
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): \DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTime $updatedAt): void
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
 
-    public function getDeletedAt(): ?\DateTime
+    public function getDeletedAt(): ?\DateTimeInterface
     {
         return $this->deletedAt;
     }

@@ -1,0 +1,41 @@
+App\Domain\Models\Notification:
+    type: entity
+    table: notifications
+    id:
+        id:
+            associationKey: true
+    embedded:
+        id:
+            class: App\Domain\Models\ValueObject\Notification\NotificationId
+            columnPrefix: false
+        status:
+            class: App\Domain\Models\ValueObject\Notification\NotificationStatus
+            columnPrefix: false
+        sender:
+            class: App\Domain\Models\ValueObject\Notification\Sender
+            columnPrefix: false
+
+    fields:
+        createdAt:
+            type: datetime
+        updatedAt:
+            type: datetime
+            nullable: true
+        deletedAt:
+            type: datetime
+            nullable: true
+
+    manyToOne:
+        type:
+            targetEntity: NotificationType
+            inversedBy: notifications
+            joinColumn:
+                name: type_id
+                referencedColumnName: id
+        recipient:
+            targetEntity: User
+            inversedBy: notifications
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+

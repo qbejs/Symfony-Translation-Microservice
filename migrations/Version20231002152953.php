@@ -14,7 +14,7 @@ final class Version20231002152953 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Symfony Messenger, languages and translations tables';
     }
 
     public function up(Schema $schema): void
