@@ -2,7 +2,7 @@
 
 namespace App\Domain\Models;
 
-use App\Domain\Interface\UpdatedAtInterface;
+use App\Domain\Interface\TimestampInterface;
 use App\Domain\Models\ValueObject\User\Email;
 use App\Domain\Models\ValueObject\User\Password;
 use App\Domain\Models\ValueObject\User\Roles;
@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class User implements UserInterface, UpdatedAtInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, TimestampInterface, PasswordAuthenticatedUserInterface
 {
     private ?UserId $id;
     private Username $username;
@@ -31,9 +31,9 @@ class User implements UserInterface, UpdatedAtInterface, PasswordAuthenticatedUs
         ?Password $password,
         Email $email,
         Roles $roles,
-        \DateTime $createdAt,
-        \DateTime $updatedAt,
-        ?\DateTime $deletedAt
+        \DateTimeInterface $createdAt,
+        \DateTimeInterface $updatedAt,
+        ?\DateTimeInterface $deletedAt
     ) {
         $this->id = $id;
         $this->username = $username;
@@ -91,22 +91,22 @@ class User implements UserInterface, UpdatedAtInterface, PasswordAuthenticatedUs
         $this->email = $email;
     }
 
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt): void
+    public function setCreatedAt(\DateTimeInterface $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
 
-    public function getDeletedAt(): ?\DateTime
+    public function getDeletedAt(): ?\DateTimeInterface
     {
         return $this->deletedAt;
     }
 
-    public function setDeletedAt(?\DateTime $deletedAt): void
+    public function setDeletedAt(?\DateTimeInterface $deletedAt): void
     {
         $this->deletedAt = $deletedAt;
     }
@@ -145,7 +145,7 @@ class User implements UserInterface, UpdatedAtInterface, PasswordAuthenticatedUs
         $this->updatedAt = $updatedAt;
     }
 
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): \DateTimeInterface
     {
         return $this->updatedAt;
     }

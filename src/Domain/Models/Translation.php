@@ -2,14 +2,14 @@
 
 namespace App\Domain\Models;
 
-use App\Domain\Interface\UpdatedAtInterface;
+use App\Domain\Interface\TimestampInterface;
 use App\Domain\Models\ValueObject\Translation\SourceText;
 use App\Domain\Models\ValueObject\Translation\Translated;
 use App\Domain\Models\ValueObject\Translation\TranslationId;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
-class Translation implements UpdatedAtInterface
+class Translation implements TimestampInterface
 {
     #[Groups(['translation'])]
     private TranslationId $id;

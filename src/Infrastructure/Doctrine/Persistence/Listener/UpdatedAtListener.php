@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Doctrine\Persistence\Listener;
 
-use App\Domain\Interface\UpdatedAtInterface;
+use App\Domain\Interface\TimestampInterface;
 use DateTime;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -13,7 +13,7 @@ class UpdatedAtListener
     {
         $entity = $args->getObject();
 
-        if ($entity instanceof UpdatedAtInterface) {
+        if ($entity instanceof TimestampInterface) {
             $entity->setUpdatedAt(new DateTime());
         }
     }
@@ -22,7 +22,7 @@ class UpdatedAtListener
     {
         $entity = $args->getObject();
 
-        if ($entity instanceof UpdatedAtInterface) {
+        if ($entity instanceof TimestampInterface) {
             $entity->setUpdatedAt(new DateTime());
         }
     }

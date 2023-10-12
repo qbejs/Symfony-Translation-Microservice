@@ -2,13 +2,13 @@
 
 namespace App\Domain\Models;
 
-use App\Domain\Interface\UpdatedAtInterface;
+use App\Domain\Interface\TimestampInterface;
 use App\Domain\Models\ValueObject\Notification\NotificationId;
 use App\Domain\Models\ValueObject\Notification\NotificationStatus;
 use App\Domain\Models\ValueObject\Notification\Sender;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class Notification implements UpdatedAtInterface
+class Notification implements TimestampInterface
 {
     private \DateTimeInterface $createdAt;
     private \DateTimeInterface $updatedAt;

@@ -2,7 +2,7 @@
 
 namespace App\Domain\Models;
 
-use App\Domain\Interface\UpdatedAtInterface;
+use App\Domain\Interface\TimestampInterface;
 use App\Domain\Models\ValueObject\NotificationType\NotificationTypeContent;
 use App\Domain\Models\ValueObject\NotificationType\NotificationTypeId;
 use App\Domain\Models\ValueObject\NotificationType\NotificationTypeName;
@@ -10,7 +10,7 @@ use App\Domain\Models\ValueObject\NotificationType\NotificationTypeSubject;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
-class NotificationType implements UpdatedAtInterface
+class NotificationType implements TimestampInterface
 {
     private \DateTimeInterface $createdAt;
     private \DateTimeInterface $updatedAt;
