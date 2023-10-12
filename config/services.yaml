@@ -2,7 +2,6 @@ imports:
     - { resource: 'services/repositories.yaml'}
     - { resource: 'services/serializers.yaml'}
     - { resource: 'services/controllers.yaml'}
-    - { resource: 'services/interfaces.yaml'}
     - { resource: 'services/blacklist_manager.yaml'}
     - { resource: 'services/security.yaml'}
 
@@ -41,6 +40,14 @@ services:
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
             - { name: doctrine.event_listener, event: prePersist }
+
+    _instanceof:
+        App\Domain\Interface\Translator\TranslatorInterface:
+            tags: [ 'app.translator.provider' ]
+        App\Domain\Interface\Security\TokenManagerInterface:
+            tags: [ 'app.token.manager' ]
+        App\Domain\Interface\Security\BlacklistManagerInterface:
+            tags: [ 'app.blacklist.manager' ]
 
 
 

@@ -1,0 +1,6 @@
+App\Domain\Models\ValueObject\Translation\ExternalId:
+    type: embeddable
+    fields:
+        externalId:
+            type: integer
+            nullable: true

@@ -7,6 +7,8 @@ use App\Domain\Factory\Interface\TranslationFactoryInterface;
 use App\Domain\Models\Language;
 use App\Domain\Models\Translation;
 use App\Domain\Models\ValueObject\Language\LanguageId;
+use App\Domain\Models\ValueObject\Translation\ExternalId;
+use App\Domain\Models\ValueObject\Translation\ExternalName;
 use App\Domain\Models\ValueObject\Translation\SourceText;
 use App\Domain\Models\ValueObject\Translation\Translated;
 use App\Domain\Models\ValueObject\Translation\TranslationId;
@@ -24,7 +26,9 @@ class TranslationFactory implements TranslationFactoryInterface
             new SourceText($dto->text),
             $sourceLanguage,
             $dto->translated ? new Translated($dto->translated) : null,
-            $targetLanguage
+            $targetLanguage,
+            $dto->externalId,
+            $dto->externalName
         );
 
         if ($dto->createdAt) {
@@ -51,13 +55,17 @@ class TranslationFactory implements TranslationFactoryInterface
         ?int $id = null,
         ?\DateTime $createdAt = null,
         ?\DateTime $updatedAt = null,
-        ?\DateTime $deletedAt = null
+        ?\DateTime $deletedAt = null,
+        ?string $externalId = null,
+        ?string $externalName = null,
     ): Translation {
         return new Translation(
             new SourceText($source),
             $source ? new Language(new LanguageId($source), null, null, null) : null,
             $translated ? new Translated($translated) : null,
-            $id ? new Language(new LanguageId($id), null, null, null, null) : null
+            $id ? new Language(new LanguageId($id), null, null, null, null) : null,
+            $externalId ? new ExternalId($externalId) : null,
+            $externalName ? new ExternalName($externalName) : null,
         );
     }
 }

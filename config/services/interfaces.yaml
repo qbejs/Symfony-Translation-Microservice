@@ -1,8 +1,0 @@
-services:
-    _instanceof:
-        App\Domain\Interface\Translator\TranslatorInterface:
-            tags: [ 'app.translator.provider' ]
-        App\Domain\Interface\Security\TokenManagerInterface:
-            tags: [ 'app.token.manager' ]
-        App\Domain\Interface\Security\BlacklistManagerInterface:
-            tags: [ 'app.blacklist.manager' ]

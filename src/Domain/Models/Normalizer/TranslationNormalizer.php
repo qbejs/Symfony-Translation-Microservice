@@ -28,6 +28,8 @@ class TranslationNormalizer implements NormalizerInterface
             'source' => $languageNormalizer->normalize($object->getSource()),
             'translated' => $object->getTranslated()?->getValue(),
             'language' => $languageNormalizer->normalize($object->getLanguage()),
+            'externalId' => $object->getExternalId()?->getValue(),
+            'externalName' => $object->getExternalName()?->getValue(),
             'currentProvider' => $this->translatorService->getProviderName() ?? 'No provider found'
         ];
     }

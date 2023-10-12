@@ -3,6 +3,8 @@
 namespace App\Domain\Models;
 
 use App\Domain\Interface\TimestampInterface;
+use App\Domain\Models\ValueObject\Translation\ExternalId;
+use App\Domain\Models\ValueObject\Translation\ExternalName;
 use App\Domain\Models\ValueObject\Translation\SourceText;
 use App\Domain\Models\ValueObject\Translation\Translated;
 use App\Domain\Models\ValueObject\Translation\TranslationId;
@@ -28,13 +30,39 @@ class Translation implements TimestampInterface
     private ?Translated $translated;
     #[Groups(['translation'])]
     private ?Language $language;
+    #[Groups(['translation'])]
+    private ?ExternalId $externalId;
+    #[Groups(['translation'])]
+    private ?ExternalName $externalName;
 
-    public function __construct(SourceText $sourceText, Language $source, ?Translated $translated, ?Language $language)
+    public function __construct(SourceText $sourceText, Language $source, ?Translated $translated, ?Language $language, ?ExternalId $externalId, ?ExternalName $externalName)
     {
         $this->sourceText = $sourceText;
         $this->source = $source;
         $this->translated = $translated;
         $this->language = $language;
+        $this->externalId = $externalId;
+        $this->externalName = $externalName;
+    }
+
+    public function getExternalId(): ?ExternalId
+    {
+        return $this->externalId;
+    }
+
+    public function setExternalId(?ExternalId $externalId): void
+    {
+        $this->externalId = $externalId;
+    }
+
+    public function getExternalName(): ?ExternalName
+    {
+        return $this->externalName;
+    }
+
+    public function setExternalName(?ExternalName $externalName): void
+    {
+        $this->externalName = $externalName;
     }
 
     public function getSourceText(): SourceText
