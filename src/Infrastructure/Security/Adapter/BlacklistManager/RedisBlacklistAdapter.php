@@ -2,8 +2,8 @@
 
 namespace App\Infrastructure\Security\Adapter\BlacklistManager;
 
+use App\Domain\Interface\Security\BlacklistManagerInterface;
 use App\Infrastructure\Security\Adapter\BlacklistManager\Exception\UserTokenNotFound;
-use App\Infrastructure\Security\Interface\BlacklistManagerInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Predis\ClientInterface;
 use Symfony\Component\Cache\Adapter\RedisAdapter;

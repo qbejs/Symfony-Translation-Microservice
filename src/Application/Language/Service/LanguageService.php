@@ -2,7 +2,6 @@
 
 namespace App\Application\Language\Service;
 
-use App\Application\Interface\ServiceInterface;
 use App\Application\Language\Command\CreateLanguageCommand;
 use App\Application\Language\Command\DeleteLanguageCommand;
 use App\Application\Language\Command\UpdateLanguageCommand;
@@ -10,6 +9,7 @@ use App\Application\Language\DTO\LanguageDTO;
 use App\Application\Language\Query\GetLanguageByIdQuery;
 use App\Application\Language\Query\GetLanguagesQuery;
 use App\Application\Language\Query\ResultRegistry;
+use App\Domain\Interface\ServiceInterface;
 use App\Domain\Models\Language;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;

@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Security\Adapter\TokenManager;
 
-use App\Infrastructure\Security\Interface\TokenManagerInterface;
+use App\Domain\Interface\Security\TokenManagerInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Exception\JWTDecodeFailureException;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;

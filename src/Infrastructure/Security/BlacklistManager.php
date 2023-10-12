@@ -2,8 +2,8 @@
 
 namespace App\Infrastructure\Security;
 
+use App\Domain\Interface\Security\BlacklistManagerInterface;
 use App\Infrastructure\Security\Exception\BlacklistAdapterUnsupportedException;
-use App\Infrastructure\Security\Interface\BlacklistManagerInterface;
 use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 
 class BlacklistManager

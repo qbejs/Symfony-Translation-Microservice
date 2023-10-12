@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Security\Interface;
+namespace App\Domain\Interface\Security;
 
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\Interface;
+namespace App\Domain\Interface;
 
 use Symfony\Component\Messenger\Envelope;
 

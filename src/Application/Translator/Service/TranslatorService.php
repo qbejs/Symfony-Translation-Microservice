@@ -2,10 +2,10 @@
 
 namespace App\Application\Translator\Service;
 
-use App\Application\Interface\ServiceInterface;
-use App\Application\Translator\Interface\TranslatorInterface;
 use App\Application\Translator\Response\Translator\LockedResponse;
+use App\Domain\Interface\ServiceInterface;
 use App\Domain\Interface\TranslationRepositoryInterface;
+use App\Domain\Interface\Translator\TranslatorInterface;
 use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 use Symfony\Component\Lock\LockFactory;
 use Symfony\Component\Lock\Store\SemaphoreStore;

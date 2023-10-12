@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Security\Interface;
+namespace App\Domain\Interface\Security;
 
 interface BlacklistManagerInterface
 {

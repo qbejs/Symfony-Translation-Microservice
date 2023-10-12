@@ -2,7 +2,7 @@
 
 namespace App\Application\Translator\Providers;
 
-use App\Application\Translator\Interface\TranslatorInterface;
+use App\Domain\Interface\Translator\TranslatorInterface;
 
 class GoogleTranslate implements TranslatorInterface
 {

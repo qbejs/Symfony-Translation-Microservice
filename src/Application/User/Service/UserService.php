@@ -2,8 +2,8 @@
 
 namespace App\Application\User\Service;
 
-use App\Application\Interface\ServiceInterface;
 use App\Domain\Factory\UserFactory;
+use App\Domain\Interface\ServiceInterface;
 use App\Domain\Interface\UserRepositoryInterface;
 use App\Domain\Models\User;
 use App\Domain\Models\ValueObject\User\Password;

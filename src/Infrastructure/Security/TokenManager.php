@@ -2,9 +2,9 @@
 
 namespace App\Infrastructure\Security;
 
+use App\Domain\Interface\Security\TokenManagerInterface;
 use App\Infrastructure\Security\Exception\TokenAdapterNotFoundException;
 use App\Infrastructure\Security\Exception\TokenAdapterUnsupportedException;
-use App\Infrastructure\Security\Interface\TokenManagerInterface;
 use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;

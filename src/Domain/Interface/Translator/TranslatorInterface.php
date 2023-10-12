@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\Translator\Interface;
+namespace App\Domain\Interface\Translator;
 
 interface TranslatorInterface
 {
