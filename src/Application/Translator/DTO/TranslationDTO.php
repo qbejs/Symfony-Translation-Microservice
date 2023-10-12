@@ -14,6 +14,6 @@ class TranslationDTO implements RequestDtoInterface
     public int $source;
     public int $languageId;
     public string $text;
-    public ?string $externalId = null;
+    public ?int $externalId = null;
     public ?string $externalName = null;
 }

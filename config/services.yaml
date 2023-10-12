@@ -36,10 +36,15 @@ services:
             - '../src/Infrastructure/{DependencyInjection,Entity,Migrations,Tests}'
         tags: [ 'app.infrastructure' ]
 
-    App\Infrastructure\Doctrine\Persistence\Listener\UpdatedAtListener:
+    App\Infrastructure\Doctrine\Persistence\Listener\TimestampListener:
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
             - { name: doctrine.event_listener, event: prePersist }
+
+    App\Domain\Factory\TranslationFactory:
+        autowire: false
+        arguments:
+            $languageRepository: '@App\Infrastructure\Repository\Doctrine\LanguageRepository'
 
     _instanceof:
         App\Domain\Interface\Translator\TranslatorInterface:
