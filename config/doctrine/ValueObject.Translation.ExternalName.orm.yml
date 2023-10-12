@@ -1,0 +1,6 @@
+App\Domain\Models\ValueObject\Translation\ExternalName:
+    type: embeddable
+    fields:
+        externalName:
+            type: string
+            nullable: true

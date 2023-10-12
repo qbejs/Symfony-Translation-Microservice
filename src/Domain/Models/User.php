@@ -2,25 +2,28 @@
 
 namespace App\Domain\Models;
 
-use App\Domain\Interface\UpdatedAtInterface;
+use App\Domain\Interface\TimestampInterface;
 use App\Domain\Models\ValueObject\User\Email;
 use App\Domain\Models\ValueObject\User\Password;
 use App\Domain\Models\ValueObject\User\Roles;
 use App\Domain\Models\ValueObject\User\UserId;
 use App\Domain\Models\ValueObject\User\Username;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class User implements UserInterface, UpdatedAtInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, TimestampInterface, PasswordAuthenticatedUserInterface
 {
     private ?UserId $id;
     private Username $username;
     private ?Password $password;
     private Email $email;
     private Roles $roles;
-    private \DateTime $createdAt;
-    private \DateTime $updatedAt;
-    private ?\DateTime $deletedAt;
+    private \DateTimeInterface $createdAt;
+    private \DateTimeInterface $updatedAt;
+    private ?\DateTimeInterface $deletedAt;
+    private Collection $notifications;
 
     public function __construct(
         ?UserId $id,
@@ -28,9 +31,9 @@ class User implements UserInterface, UpdatedAtInterface, PasswordAuthenticatedUs
         ?Password $password,
         Email $email,
         Roles $roles,
-        \DateTime $createdAt,
-        \DateTime $updatedAt,
-        ?\DateTime $deletedAt
+        \DateTimeInterface $createdAt,
+        \DateTimeInterface $updatedAt,
+        ?\DateTimeInterface $deletedAt
     ) {
         $this->id = $id;
         $this->username = $username;
@@ -40,6 +43,7 @@ class User implements UserInterface, UpdatedAtInterface, PasswordAuthenticatedUs
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->deletedAt = $deletedAt;
+        $this->notifications = new ArrayCollection();
     }
 
     public function getId(): ?UserId
@@ -87,22 +91,22 @@ class User implements UserInterface, UpdatedAtInterface, PasswordAuthenticatedUs
         $this->email = $email;
     }
 
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt): void
+    public function setCreatedAt(\DateTimeInterface $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
 
-    public function getDeletedAt(): ?\DateTime
+    public function getDeletedAt(): ?\DateTimeInterface
     {
         return $this->deletedAt;
     }
 
-    public function setDeletedAt(?\DateTime $deletedAt): void
+    public function setDeletedAt(?\DateTimeInterface $deletedAt): void
     {
         $this->deletedAt = $deletedAt;
     }
@@ -136,13 +140,38 @@ class User implements UserInterface, UpdatedAtInterface, PasswordAuthenticatedUs
         return $this->email->getValue();
     }
 
-    public function setUpdatedAt(\DateTime $updatedAt): void
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
 
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): \DateTimeInterface
     {
         return $this->updatedAt;
     }
+
+    /**
+     * @return Notification[]
+     */
+    public function getNotifications(): array
+    {
+        return $this->notifications->toArray();
+    }
+
+    public function addNotification(Notification $notification): void
+    {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications->add($notification);
+            $notification->setRecipient($this);
+        }
+    }
+
+    public function removeNotification(Notification $notification): void
+    {
+        if ($this->notifications->contains($notification)) {
+            $this->notifications->removeElement($notification);
+            $notification->setRecipient(null);
+        }
+    }
+
 }

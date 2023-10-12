@@ -43,7 +43,7 @@ class TranslationController extends AbstractController
     #[Route(path: '/translation', name: 'translation.create', methods: ['POST'])]
     public function createTranslation(TranslationDTO $dto): Response
     {
-        $this->queryBus->dispatch(new CreateTranslationCommand($dto->languageId, $dto->source, $dto->text));
+        $this->queryBus->dispatch(new CreateTranslationCommand($dto->languageId, $dto->source, $dto->text, $dto->externalId, $dto->externalName));
 
         return new Response('Resource created', Response::HTTP_CREATED);
     }

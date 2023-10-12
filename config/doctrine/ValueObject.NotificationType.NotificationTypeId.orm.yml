@@ -1,0 +1,8 @@
+App\Domain\Models\ValueObject\NotificationType\NotificationTypeId:
+    type: embeddable
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO

@@ -19,7 +19,7 @@ class TranslationNormalizer implements NormalizerInterface
     /**
      * @inheritDoc
      */
-    public function normalize(mixed $object, string $format = null, array $context = [])
+    public function normalize(mixed $object, string $format = null, array $context = []): array
     {
         $languageNormalizer = new LanguageNormalizer();
         return [
@@ -28,6 +28,8 @@ class TranslationNormalizer implements NormalizerInterface
             'source' => $languageNormalizer->normalize($object->getSource()),
             'translated' => $object->getTranslated()?->getValue(),
             'language' => $languageNormalizer->normalize($object->getLanguage()),
+            'externalId' => $object->getExternalId()?->getValue(),
+            'externalName' => $object->getExternalName()?->getValue(),
             'currentProvider' => $this->translatorService->getProviderName() ?? 'No provider found'
         ];
     }
@@ -35,7 +37,7 @@ class TranslationNormalizer implements NormalizerInterface
     /**
      * @inheritDoc
      */
-    public function supportsNormalization(mixed $data, string $format = null)
+    public function supportsNormalization(mixed $data, string $format = null): bool
     {
         return $data instanceof Translation;
     }

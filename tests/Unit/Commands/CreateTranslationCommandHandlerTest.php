@@ -22,7 +22,7 @@ class CreateTranslationCommandHandlerTest extends BaseTest
         $mockedLanguageRepo = $this->mockLanguageRepositoryResultForDecorator($sourceLanguage, $targetLanguage);
 
         // Mock the command
-        $command = new CreateTranslationCommand(9, 10, 'Witaj świecie!');
+        $command = new CreateTranslationCommand(9, 10, 'Witaj świecie!', null, null);
 
         // Mock the expected DTO to be produced by the handler
         $dto = $this->createTranslationDTOFromCommand($command);

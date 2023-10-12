@@ -51,6 +51,8 @@ class CreateTranslationCommandHandler
         $dto->source = $command->source;
         $dto->languageId = $command->target;
         $dto->text = $command->text;
+        $dto->externalId = $command->externalId;
+        $dto->externalName = $command->externalName;
 
         $desiredLang = $this->languageRepository->find($command->target);
         $sourceLang = $this->languageRepository->find($command->source);

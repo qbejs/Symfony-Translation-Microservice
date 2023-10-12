@@ -1,0 +1,35 @@
+App\Domain\Models\NotificationType:
+    type: entity
+    table: notifications_types
+    id:
+        id:
+            associationKey: true
+    embedded:
+        id:
+            class: App\Domain\Models\ValueObject\NotificationType\NotificationTypeId
+            columnPrefix: false
+        name:
+            class: App\Domain\Models\ValueObject\NotificationType\NotificationTypeName
+            columnPrefix: false
+        subject:
+            class: App\Domain\Models\ValueObject\NotificationType\NotificationTypeSubject
+            columnPrefix: false
+        content:
+            class: App\Domain\Models\ValueObject\NotificationType\NotificationTypeContent
+            columnPrefix: false
+
+    fields:
+        createdAt:
+            type: datetime
+        updatedAt:
+            type: datetime
+            nullable: true
+        deletedAt:
+            type: datetime
+            nullable: true
+
+    oneToMany:
+        notifications:
+            targetEntity: Notification
+            mappedBy: type
+

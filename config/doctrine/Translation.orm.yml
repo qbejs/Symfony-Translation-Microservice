@@ -14,6 +14,12 @@ App\Domain\Models\Translation:
         sourceText:
             class: App\Domain\Models\ValueObject\Translation\SourceText
             columnPrefix: false
+        externalId:
+            class: App\Domain\Models\ValueObject\Translation\ExternalId
+            columnPrefix: false
+        externalName:
+            class: App\Domain\Models\ValueObject\Translation\ExternalName
+            columnPrefix: false
     fields:
         createdAt:
             type: datetime

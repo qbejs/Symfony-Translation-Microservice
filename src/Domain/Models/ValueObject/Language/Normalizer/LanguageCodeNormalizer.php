@@ -2,19 +2,12 @@
 
 namespace App\Domain\Models\ValueObject\Language\Normalizer;
 
+use App\Domain\Models\Normalizer\AbstractValueObjectNormalizer;
 use App\Domain\Models\ValueObject\Language\LanguageCode;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class LanguageCodeNormalizer implements NormalizerInterface
+class LanguageCodeNormalizer extends AbstractValueObjectNormalizer
 {
-
-    /**
-     * @inheritDoc
-     */
-    public function normalize(mixed $object, string $format = null, array $context = []): string
-    {
-        return $object->getValue();
-    }
 
     /**
      * @inheritDoc

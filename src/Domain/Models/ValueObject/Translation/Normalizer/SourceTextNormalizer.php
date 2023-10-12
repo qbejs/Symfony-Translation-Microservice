@@ -2,18 +2,13 @@
 
 namespace App\Domain\Models\ValueObject\Translation\Normalizer;
 
+use App\Domain\Models\Normalizer\AbstractValueObjectNormalizer;
 use App\Domain\Models\ValueObject\Translation\SourceText;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class SourceTextNormalizer implements NormalizerInterface
+class SourceTextNormalizer extends AbstractValueObjectNormalizer
 {
-
-    public function normalize(mixed $object, string $format = null, array $context = [])
-    {
-        return $object->getValue();
-    }
-
-    public function supportsNormalization(mixed $data, string $format = null)
+    public function supportsNormalization(mixed $data, string $format = null): bool
     {
         return $data instanceof SourceText;
     }

@@ -31,3 +31,8 @@ App\Domain\Models\User:
             type: datetime
             nullable: true
 
+    oneToMany:
+        notifications:
+            targetEntity: Notification
+            mappedBy: recipient
+

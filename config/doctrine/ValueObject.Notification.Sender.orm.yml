@@ -1,0 +1,6 @@
+App\Domain\Models\ValueObject\Notification\Sender:
+    type: embeddable
+    fields:
+        sender:
+            type: string
+            length: 255

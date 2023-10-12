@@ -2,7 +2,6 @@ imports:
     - { resource: 'services/repositories.yaml'}
     - { resource: 'services/serializers.yaml'}
     - { resource: 'services/controllers.yaml'}
-    - { resource: 'services/interfaces.yaml'}
     - { resource: 'services/blacklist_manager.yaml'}
     - { resource: 'services/security.yaml'}
 
@@ -37,10 +36,23 @@ services:
             - '../src/Infrastructure/{DependencyInjection,Entity,Migrations,Tests}'
         tags: [ 'app.infrastructure' ]
 
-    App\Infrastructure\Doctrine\Persistence\Listener\UpdatedAtListener:
+    App\Infrastructure\Doctrine\Persistence\Listener\TimestampListener:
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
             - { name: doctrine.event_listener, event: prePersist }
+
+    App\Domain\Factory\TranslationFactory:
+        autowire: false
+        arguments:
+            $languageRepository: '@App\Infrastructure\Repository\Doctrine\LanguageRepository'
+
+    _instanceof:
+        App\Domain\Interface\Translator\TranslatorInterface:
+            tags: [ 'app.translator.provider' ]
+        App\Domain\Interface\Security\TokenManagerInterface:
+            tags: [ 'app.token.manager' ]
+        App\Domain\Interface\Security\BlacklistManagerInterface:
+            tags: [ 'app.blacklist.manager' ]
 
 
 

@@ -2,20 +2,12 @@
 
 namespace App\Domain\Models\ValueObject\Translation\Normalizer;
 
+use App\Domain\Models\Normalizer\AbstractValueObjectNormalizer;
 use App\Domain\Models\ValueObject\Translation\TranslationId;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class TranslationIdNormalizer implements NormalizerInterface
+class TranslationIdNormalizer extends AbstractValueObjectNormalizer
 {
-
-        /**
-        * @inheritDoc
-        */
-        public function normalize(mixed $object, string $format = null, array $context = []): string
-        {
-            return $object->getValue();
-        }
-
         /**
         * @inheritDoc
         */

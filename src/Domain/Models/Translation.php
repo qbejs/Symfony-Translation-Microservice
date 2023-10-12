@@ -2,23 +2,25 @@
 
 namespace App\Domain\Models;
 
-use App\Domain\Interface\UpdatedAtInterface;
+use App\Domain\Interface\TimestampInterface;
+use App\Domain\Models\ValueObject\Translation\ExternalId;
+use App\Domain\Models\ValueObject\Translation\ExternalName;
 use App\Domain\Models\ValueObject\Translation\SourceText;
 use App\Domain\Models\ValueObject\Translation\Translated;
 use App\Domain\Models\ValueObject\Translation\TranslationId;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
-class Translation implements UpdatedAtInterface
+class Translation implements TimestampInterface
 {
     #[Groups(['translation'])]
     private TranslationId $id;
     #[Groups(['translation'])]
-    private \DateTime $createdAt;
+    private \DateTimeInterface $createdAt;
     #[Groups(['translation'])]
-    private \DateTime $updatedAt;
+    private \DateTimeInterface $updatedAt;
     #[Groups(['translation'])]
-    private ?\DateTime $deletedAt;
+    private ?\DateTimeInterface $deletedAt;
     #[Groups(['translation'])]
     private Language $source;
 
@@ -28,13 +30,39 @@ class Translation implements UpdatedAtInterface
     private ?Translated $translated;
     #[Groups(['translation'])]
     private ?Language $language;
+    #[Groups(['translation'])]
+    private ?ExternalId $externalId;
+    #[Groups(['translation'])]
+    private ?ExternalName $externalName;
 
-    public function __construct(SourceText $sourceText, Language $source, ?Translated $translated, ?Language $language)
+    public function __construct(SourceText $sourceText, Language $source, ?Translated $translated, ?Language $language, ?ExternalId $externalId, ?ExternalName $externalName)
     {
         $this->sourceText = $sourceText;
         $this->source = $source;
         $this->translated = $translated;
         $this->language = $language;
+        $this->externalId = $externalId;
+        $this->externalName = $externalName;
+    }
+
+    public function getExternalId(): ?ExternalId
+    {
+        return $this->externalId;
+    }
+
+    public function setExternalId(?ExternalId $externalId): void
+    {
+        $this->externalId = $externalId;
+    }
+
+    public function getExternalName(): ?ExternalName
+    {
+        return $this->externalName;
+    }
+
+    public function setExternalName(?ExternalName $externalName): void
+    {
+        $this->externalName = $externalName;
     }
 
     public function getSourceText(): SourceText
@@ -67,27 +95,27 @@ class Translation implements UpdatedAtInterface
         $this->id = $id;
     }
 
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt): void
+    public function setCreatedAt(\DateTimeInterface $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
 
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): \DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTime $updatedAt): void
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
 
-    public function getDeletedAt(): ?\DateTime
+    public function getDeletedAt(): ?\DateTimeInterface
     {
         return $this->deletedAt;
     }
