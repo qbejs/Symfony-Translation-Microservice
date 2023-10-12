@@ -9,4 +9,4 @@ services:
 
     App\Application\User\Controller\:
         resource: '../../src/Application/User/Controller/'
-        tags: [ 'controller.service_arguments' ]
+        tags: [ 'controller.service_arguments' ]cha

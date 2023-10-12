@@ -20,11 +20,6 @@ class LanguageName
         return $this->name;
     }
 
-    public function withName(string $name): self
-    {
-        return new self($name);
-    }
-
     public function __toString(): string
     {
         return $this->name;

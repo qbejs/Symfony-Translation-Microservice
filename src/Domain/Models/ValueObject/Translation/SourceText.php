@@ -19,9 +19,4 @@ class SourceText
     {
         return $this->sourceText;
     }
-
-    public function withSource(string $sourceText): self
-    {
-        return new self($sourceText);
-    }
 }

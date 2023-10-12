@@ -18,9 +18,4 @@ class Translated
     {
         return $this->translated;
     }
-
-    public function withTranslated(string $translated): self
-    {
-        return new self($translated);
-    }
 }

@@ -20,11 +20,6 @@ class LanguageCode
         return $this->code;
     }
 
-    public function withCode(string $code): self
-    {
-        return new self($code);
-    }
-
     public function __toString(): string
     {
         return $this->code;

@@ -32,12 +32,4 @@ class LanguageAvailability
     {
         return $this->microservice;
     }
-
-    public function withMicroserviceAvailability(bool $microservice): self {
-        return new self($this->publicMicroservice, $microservice);
-    }
-
-    public function withPublicAvailability(bool $publicMicroservice): self {
-        return new self($publicMicroservice, $this->microservice);
-    }
 }

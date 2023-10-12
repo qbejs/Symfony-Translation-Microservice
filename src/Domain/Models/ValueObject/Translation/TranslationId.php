@@ -19,9 +19,4 @@ class TranslationId
     {
         return $this->id;
     }
-
-    public function withId(int $id): self
-    {
-        return new self($id);
-    }
 }

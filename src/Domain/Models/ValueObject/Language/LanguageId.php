@@ -16,9 +16,4 @@ class LanguageId
     {
         return $this->id;
     }
-
-    public function withLanguageId(int $id): self
-    {
-        return new self($id);
-    }
 }
