@@ -7,7 +7,7 @@ use DateTime;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
-class UpdatedAtListener
+class TimestampListener
 {
     public function preUpdate(PreUpdateEventArgs $args): void
     {
@@ -23,7 +23,11 @@ class UpdatedAtListener
         $entity = $args->getObject();
 
         if ($entity instanceof TimestampInterface) {
-            $entity->setUpdatedAt(new DateTime());
+            $entity->setUpdatedAt(new DateTime('now'));
+
+            if (!$entity->getCreatedAt()) {
+                $entity->setCreatedAt(new DateTime('now'));
+            }
         }
     }
 }

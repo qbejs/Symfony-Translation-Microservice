@@ -4,6 +4,8 @@ namespace App\Domain\Factory;
 
 use App\Application\Translator\DTO\TranslationDTO;
 use App\Domain\Factory\Interface\TranslationFactoryInterface;
+use App\Domain\Interface\LanguageRepositoryInterface;
+use App\Domain\Interface\TranslationRepositoryInterface;
 use App\Domain\Models\Language;
 use App\Domain\Models\Translation;
 use App\Domain\Models\ValueObject\Language\LanguageId;
@@ -15,6 +17,10 @@ use App\Domain\Models\ValueObject\Translation\TranslationId;
 
 class TranslationFactory implements TranslationFactoryInterface
 {
+    public function __construct(
+        private readonly LanguageRepositoryInterface $languageRepository,
+    ) {
+    }
     /**
      * Create Translation from DTO
      * @throws \Exception
@@ -24,20 +30,15 @@ class TranslationFactory implements TranslationFactoryInterface
 
         $translation = new Translation(
             new SourceText($dto->text),
-            $sourceLanguage,
+            $this->languageRepository->find($dto->source),
             $dto->translated ? new Translated($dto->translated) : null,
-            $targetLanguage,
-            $dto->externalId,
-            $dto->externalName
+            $this->languageRepository->find($dto->languageId),
+            new ExternalId($dto->externalId),
+            new ExternalName($dto->externalName)
         );
 
-        if ($dto->createdAt) {
-            $translation->setCreatedAt(new \DateTime($dto->createdAt));
-        }
-
-        if ($dto->updatedAt) {
-            $translation->setUpdatedAt(new \DateTime($dto->updatedAt));
-        }
+        $translation->setCreatedAt(new \DateTime($dto->createdAt));
+        $translation->setUpdatedAt(new \DateTime($dto->updatedAt));
 
         if ($dto->deletedAt) {
             $translation->setDeletedAt($dto->deletedAt);
