@@ -2,7 +2,6 @@
 
 namespace App\Application\User\CommandHandler;
 
-use App\Application\Language\Command\CreateLanguageCommand;
 use App\Application\User\Command\CreateUserCommand;
 use App\Application\User\Service\UserService;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;

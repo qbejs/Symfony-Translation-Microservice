@@ -17,10 +17,8 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\CustomCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 
-
 class ApplicationJWTAuthenticator extends JWTAuthenticator
 {
-
     private TokenExtractorInterface $tokenExtractor;
 
     private JWTTokenManagerInterface $jwtManager;
@@ -30,10 +28,10 @@ class ApplicationJWTAuthenticator extends JWTAuthenticator
     private UserProviderInterface $userProvider;
 
     public function __construct(
-        JWTTokenManagerInterface                                    $jwtManager,
+        JWTTokenManagerInterface $jwtManager,
         \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $eventDispatcher,
-        TokenExtractorInterface                                     $tokenExtractor,
-        UserProviderInterface                                       $userProvider,
+        TokenExtractorInterface $tokenExtractor,
+        UserProviderInterface $userProvider,
     ) {
         parent::__construct($jwtManager, $eventDispatcher, $tokenExtractor, $userProvider);
         $this->eventDispatcher = $eventDispatcher;
@@ -41,6 +39,7 @@ class ApplicationJWTAuthenticator extends JWTAuthenticator
         $this->tokenExtractor = $tokenExtractor;
         $this->userProvider = $userProvider;
     }
+
     public function createToken(Passport $passport, string $firewallName): TokenInterface
     {
         /** @var User $user */
@@ -72,7 +71,7 @@ class ApplicationJWTAuthenticator extends JWTAuthenticator
 
         $credentials = new CustomCredentials(
             function ($credentials) {
-                    // TO DO: Additional validation of the token
+                // TO DO: Additional validation of the token
                 return true;
             },
             $token

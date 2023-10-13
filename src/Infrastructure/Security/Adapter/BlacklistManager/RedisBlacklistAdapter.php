@@ -15,12 +15,14 @@ class RedisBlacklistAdapter implements BlacklistManagerInterface
     private ClientInterface $redisAdapter;
     private TokenStorageInterface $tokenStorage;
     private JWTTokenManagerInterface $jwtManager;
+
     public function __construct(string $redisConnectionString, TokenStorageInterface $tokenStorage, JWTTokenManagerInterface $jwtManager)
     {
         $this->redisAdapter = RedisAdapter::createConnection($redisConnectionString);
         $this->tokenStorage = $tokenStorage;
         $this->jwtManager = $jwtManager;
     }
+
     public function addTokenToBlacklist(string $token, int $ttl = 111600): void
     {
         $this->redisAdapter->set($token, true, $ttl);
@@ -67,6 +69,6 @@ class RedisBlacklistAdapter implements BlacklistManagerInterface
 
     public function isSupported(): bool
     {
-        return True;
+        return true;
     }
 }

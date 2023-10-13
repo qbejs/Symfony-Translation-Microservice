@@ -5,7 +5,6 @@ namespace App\Domain\Factory;
 use App\Application\Translator\DTO\TranslationDTO;
 use App\Domain\Factory\Interface\TranslationFactoryInterface;
 use App\Domain\Interface\LanguageRepositoryInterface;
-use App\Domain\Interface\TranslationRepositoryInterface;
 use App\Domain\Models\Language;
 use App\Domain\Models\Translation;
 use App\Domain\Models\ValueObject\Language\LanguageId;
@@ -13,7 +12,6 @@ use App\Domain\Models\ValueObject\Translation\ExternalId;
 use App\Domain\Models\ValueObject\Translation\ExternalName;
 use App\Domain\Models\ValueObject\Translation\SourceText;
 use App\Domain\Models\ValueObject\Translation\Translated;
-use App\Domain\Models\ValueObject\Translation\TranslationId;
 
 class TranslationFactory implements TranslationFactoryInterface
 {
@@ -21,13 +19,14 @@ class TranslationFactory implements TranslationFactoryInterface
         private readonly LanguageRepositoryInterface $languageRepository,
     ) {
     }
+
     /**
-     * Create Translation from DTO
+     * Create Translation from DTO.
+     *
      * @throws \Exception
      */
-    public function createFromDTO(TranslationDTO $dto, ?Language $sourceLanguage = null, ?Language $targetLanguage = null): Translation
+    public function createFromDTO(TranslationDTO $dto, Language $sourceLanguage = null, Language $targetLanguage = null): Translation
     {
-
         $translation = new Translation(
             new SourceText($dto->text),
             $this->languageRepository->find($dto->source),
@@ -48,17 +47,17 @@ class TranslationFactory implements TranslationFactoryInterface
     }
 
     /**
-     * Create Translation from primitives
+     * Create Translation from primitives.
      */
     public function create(
         int $source,
         ?string $translated,
-        ?int $id = null,
-        ?\DateTime $createdAt = null,
-        ?\DateTime $updatedAt = null,
-        ?\DateTime $deletedAt = null,
-        ?string $externalId = null,
-        ?string $externalName = null,
+        int $id = null,
+        \DateTime $createdAt = null,
+        \DateTime $updatedAt = null,
+        \DateTime $deletedAt = null,
+        string $externalId = null,
+        string $externalName = null,
     ): Translation {
         return new Translation(
             new SourceText($source),

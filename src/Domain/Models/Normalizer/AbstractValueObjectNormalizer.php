@@ -6,10 +6,6 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 abstract class AbstractValueObjectNormalizer implements NormalizerInterface
 {
-
-    /**
-     * @inheritDoc
-     */
     public function normalize(mixed $object, string $format = null, array $context = []): mixed
     {
         return $object->getValue();

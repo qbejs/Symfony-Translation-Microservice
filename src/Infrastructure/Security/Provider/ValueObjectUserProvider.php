@@ -4,7 +4,6 @@ namespace App\Infrastructure\Security\Provider;
 
 use App\Domain\Interface\UserRepositoryInterface;
 use App\Domain\Models\User;
-use App\Domain\Models\ValueObject\User\Email;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -16,9 +15,6 @@ class ValueObjectUserProvider implements UserProviderInterface
     {
     }
 
-    /**
-     * @inheritDoc
-     */
     public function refreshUser(UserInterface $user)
     {
         if (!$user instanceof User) {
@@ -28,16 +24,12 @@ class ValueObjectUserProvider implements UserProviderInterface
         return $this->userRepository->find($user->getId()->getValue());
     }
 
-    /**
-     * @inheritDoc
-     */
     public function supportsClass(string $class)
     {
-        return $class === User::class;
+        return User::class === $class;
     }
 
     /**
-     * @inheritDoc
      * @throws NonUniqueResultException
      */
     public function loadUserByIdentifier(string $identifier): UserInterface

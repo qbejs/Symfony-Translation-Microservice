@@ -2,9 +2,7 @@
 
 namespace App\Infrastructure\Repository\Doctrine;
 
-use App\Domain\Interface\LanguageRepositoryInterface;
 use App\Domain\Interface\TranslationRepositoryInterface;
-use App\Domain\Models\Language;
 use App\Domain\Models\Translation;
 use Doctrine\ORM\EntityManagerInterface;
 

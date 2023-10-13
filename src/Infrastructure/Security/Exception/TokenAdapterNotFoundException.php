@@ -2,7 +2,6 @@
 
 namespace App\Infrastructure\Security\Exception;
 
-
 class TokenAdapterNotFoundException extends \Exception
 {
     public function __construct(string $tokenName)

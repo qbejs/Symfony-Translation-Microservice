@@ -25,7 +25,7 @@ class NotificationType implements TimestampInterface
         NotificationTypeId $id,
         NotificationTypeName $name,
         NotificationTypeContent $content,
-        ?NotificationTypeSubject $subject = null,
+        NotificationTypeSubject $subject = null,
     ) {
         $this->id = $id;
         $this->name = $name;

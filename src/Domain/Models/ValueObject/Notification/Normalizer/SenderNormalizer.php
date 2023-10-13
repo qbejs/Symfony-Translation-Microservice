@@ -7,10 +7,6 @@ use App\Domain\Models\ValueObject\Notification\Sender;
 
 class SenderNormalizer extends AbstractValueObjectNormalizer
 {
-
-    /**
-     * @inheritDoc
-     */
     public function supportsNormalization(mixed $data, string $format = null): bool
     {
         return $data instanceof Sender;

@@ -5,10 +5,8 @@ namespace App\Application\Language\CommandHandler;
 use App\Application\Language\Command\DeleteLanguageCommand;
 use App\Application\Language\Event\LanguageDeletedEvent;
 use App\Domain\Interface\LanguageRepositoryInterface;
-use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 #[AsMessageHandler]
 class DeleteLanguageCommandHandler

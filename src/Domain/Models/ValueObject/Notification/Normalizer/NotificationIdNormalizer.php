@@ -7,10 +7,6 @@ use App\Domain\Models\ValueObject\Notification\NotificationId;
 
 class NotificationIdNormalizer extends AbstractValueObjectNormalizer
 {
-
-    /**
-     * @inheritDoc
-     */
     public function supportsNormalization(mixed $data, string $format = null): bool
     {
         return $data instanceof NotificationId;

@@ -7,11 +7,8 @@ use App\Application\Language\DTO\LanguageDTO;
 use App\Application\Language\Event\LanguageCreatedEvent;
 use App\Domain\Factory\LanguageFactory;
 use App\Domain\Interface\LanguageRepositoryInterface;
-use App\Domain\Models\Language;
 use App\Infrastructure\Repository\Doctrine\LanguageRepository;
-use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 #[AsMessageHandler]

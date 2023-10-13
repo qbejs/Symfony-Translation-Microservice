@@ -8,11 +8,11 @@ use Doctrine\DBAL\Types\Type;
 
 class LanguageAvailabilityType extends Type
 {
-    const LANGUAGE_AVAILABILITY = 'language_availability';
+    public const LANGUAGE_AVAILABILITY = 'language_availability';
 
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {
-        return "JSON";
+        return 'JSON';
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform): ?LanguageAvailability
@@ -31,7 +31,7 @@ class LanguageAvailabilityType extends Type
         if ($value instanceof LanguageAvailability) {
             return json_encode([
                 'publicMicroservice' => $value->isAvailableInPublic(),
-                'microservice' => $value->isAvailableInMicroservice()
+                'microservice' => $value->isAvailableInMicroservice(),
             ]);
         }
 

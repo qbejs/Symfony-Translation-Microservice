@@ -9,12 +9,12 @@ class Roles
     public function __construct(array $values)
     {
         if (empty($values)) {
-            throw new \InvalidArgumentException("User must have at least one role.");
+            throw new \InvalidArgumentException('User must have at least one role.');
         }
 
         foreach ($values as $value) {
             if (!is_string($value)) {
-                throw new \InvalidArgumentException("Each role must be a string.");
+                throw new \InvalidArgumentException('Each role must be a string.');
             }
         }
 

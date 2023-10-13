@@ -12,7 +12,7 @@ class LockedResponse implements ResponseInterface
     {
         return new JsonResponse([
             'status' => 'error',
-            'message' => 'Nie można przetłumaczyć tekstu, ponieważ jest obecnie przetwarzany.'
+            'message' => 'Nie można przetłumaczyć tekstu, ponieważ jest obecnie przetwarzany.',
         ], Response::HTTP_CONFLICT);  // HTTP 409 Conflict
     }
 }

@@ -3,9 +3,8 @@
 namespace App\Infrastructure\Doctrine\Persistence\Listener;
 
 use App\Domain\Interface\TimestampInterface;
-use DateTime;
-use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 
 class TimestampListener
 {
@@ -14,7 +13,7 @@ class TimestampListener
         $entity = $args->getObject();
 
         if ($entity instanceof TimestampInterface) {
-            $entity->setUpdatedAt(new DateTime());
+            $entity->setUpdatedAt(new \DateTime());
         }
     }
 
@@ -23,10 +22,10 @@ class TimestampListener
         $entity = $args->getObject();
 
         if ($entity instanceof TimestampInterface) {
-            $entity->setUpdatedAt(new DateTime('now'));
+            $entity->setUpdatedAt(new \DateTime('now'));
 
             if (!$entity->getCreatedAt()) {
-                $entity->setCreatedAt(new DateTime('now'));
+                $entity->setCreatedAt(new \DateTime('now'));
             }
         }
     }

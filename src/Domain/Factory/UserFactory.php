@@ -12,7 +12,6 @@ use App\Domain\Models\ValueObject\User\Username;
 
 class UserFactory implements UserFactoryInterface
 {
-
     public function createFromDTO(UserDTO $dto): User
     {
         return new User(

@@ -8,9 +8,9 @@ class Email
 
     public function __construct(string $email)
     {
-//        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
-//            throw new \InvalidArgumentException("Invalid email format.");
-//        }
+        //        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
+        //            throw new \InvalidArgumentException("Invalid email format.");
+        //        }
 
         $this->email = $email;
     }

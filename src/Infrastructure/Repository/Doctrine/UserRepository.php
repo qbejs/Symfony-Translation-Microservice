@@ -51,5 +51,4 @@ class UserRepository implements UserRepositoryInterface
             ->getQuery()
             ->getOneOrNullResult();
     }
-
 }

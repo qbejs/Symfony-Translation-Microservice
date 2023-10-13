@@ -7,10 +7,6 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class LanguageNormalizer implements NormalizerInterface
 {
-
-    /**
-     * @inheritDoc
-     */
     public function normalize(mixed $object, string $format = null, array $context = []): array
     {
         return [
@@ -21,9 +17,6 @@ class LanguageNormalizer implements NormalizerInterface
         ];
     }
 
-    /**
-     * @inheritDoc
-     */
     public function supportsNormalization(mixed $data, string $format = null): bool
     {
         return $data instanceof Language;

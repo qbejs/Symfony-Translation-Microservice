@@ -14,7 +14,7 @@ class NotificationStatus
             throw new \InvalidArgumentException('Notification status cannot be empty');
         }
 
-        if (NotificationStatusEnum::tryFrom($status) === null) {
+        if (null === NotificationStatusEnum::tryFrom($status)) {
             throw new \InvalidArgumentException('Invalid notification status');
         }
 

@@ -111,9 +111,6 @@ class User implements UserInterface, TimestampInterface, PasswordAuthenticatedUs
         $this->deletedAt = $deletedAt;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getRoles(): array
     {
         return $this->roles->getValues();
@@ -124,17 +121,11 @@ class User implements UserInterface, TimestampInterface, PasswordAuthenticatedUs
         $this->roles = $roles;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function eraseCredentials(): void
     {
         $this->password = new Password('');
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getUserIdentifier(): string
     {
         return $this->email->getValue();
@@ -173,5 +164,4 @@ class User implements UserInterface, TimestampInterface, PasswordAuthenticatedUs
             $notification->setRecipient(null);
         }
     }
-
 }

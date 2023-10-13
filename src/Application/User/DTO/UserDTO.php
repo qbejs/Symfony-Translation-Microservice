@@ -13,7 +13,7 @@ class UserDTO implements RequestDtoInterface
     public function __construct(string $username, string $email, string $password)
     {
         $this->username = $username;
-        $this->email    = $email;
+        $this->email = $email;
         $this->password = $password;
     }
 
@@ -21,9 +21,8 @@ class UserDTO implements RequestDtoInterface
     {
         return [
             'username' => $this->username,
-            'email'    => $this->email,
+            'email' => $this->email,
             'password' => $this->password,
         ];
     }
-
 }

@@ -14,7 +14,7 @@ class LanguageAvailability
         $this->microservice = $microservice;
         $this->availability = [
             'public' => $publicMicroservice,
-            'microservice' => $microservice
+            'microservice' => $microservice,
         ];
     }
 

@@ -9,9 +9,9 @@ use App\Domain\Models\ValueObject\Language\LanguageAvailability;
 interface LanguageFactoryInterface
 {
     public function create(
-        ?string $name = null,
-        ?string $code = null,
-        ?LanguageAvailability $availability = null
+        string $name = null,
+        string $code = null,
+        LanguageAvailability $availability = null
     ): Language;
 
     public function createFromDTO(LanguageDTO $dto): Language;

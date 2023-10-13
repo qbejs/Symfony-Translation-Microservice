@@ -2,7 +2,6 @@
 
 namespace App\Infrastructure\Security\Exception;
 
-
 class BlacklistAdapterUnsupportedException extends \Exception
 {
     public function __construct()

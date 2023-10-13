@@ -17,8 +17,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 class TranslationController extends AbstractController
 {
     public function __construct(private readonly MessageBusInterface $queryBus,
-                                private readonly TranslatorService   $translationService,
-                                private readonly SerializerInterface $serializer)
+        private readonly TranslatorService $translationService,
+        private readonly SerializerInterface $serializer)
     {
     }
 
@@ -48,19 +48,19 @@ class TranslationController extends AbstractController
         return new Response('Resource created', Response::HTTP_CREATED);
     }
 
-//    #[Route(path: '/translation/{id}', name: 'translation.update', methods: ['PUT'])]
-//    public function updateTranslation(int $id, TranslationDTO $dto): Response
-//    {
-//        $this->queryBus->dispatch(new UpdateTranslationCommand($id, $dto->name, $dto->code));
-//
-//        return new Response('Resource updated', Response::HTTP_OK);
-//    }
-//
-//    #[Route(path: '/translation/{id}', name: 'translation.delete', methods: ['DELETE'])]
-//    public function deleteTranslation(int $id): Response
-//    {
-//        $this->queryBus->dispatch(new DeleteTranslationCommand($id));
-//
-//        return new Response('Resource deleted', Response::HTTP_OK);
-//    }
+    //    #[Route(path: '/translation/{id}', name: 'translation.update', methods: ['PUT'])]
+    //    public function updateTranslation(int $id, TranslationDTO $dto): Response
+    //    {
+    //        $this->queryBus->dispatch(new UpdateTranslationCommand($id, $dto->name, $dto->code));
+    //
+    //        return new Response('Resource updated', Response::HTTP_OK);
+    //    }
+    //
+    //    #[Route(path: '/translation/{id}', name: 'translation.delete', methods: ['DELETE'])]
+    //    public function deleteTranslation(int $id): Response
+    //    {
+    //        $this->queryBus->dispatch(new DeleteTranslationCommand($id));
+    //
+    //        return new Response('Resource deleted', Response::HTTP_OK);
+    //    }
 }

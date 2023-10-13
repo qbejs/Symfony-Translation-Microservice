@@ -2,7 +2,6 @@
 
 namespace App\Application\Translator\Listener;
 
-use App\Application\Language\Event\LanguageCreatedEvent;
 use App\Application\Translator\Event\TranslationCreatedEvent;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;

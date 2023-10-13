@@ -12,7 +12,7 @@ class LanguageDTO implements RequestDtoInterface
     public ?bool $public;
     public ?bool $microservice;
 
-    public function __construct(?int $id = null, ?string $name = null, ?string $code = null, ?bool $public = null, ?bool $microservice = null)
+    public function __construct(int $id = null, string $name = null, string $code = null, bool $public = null, bool $microservice = null)
     {
         $this->id = $id;
         $this->name = $name;
