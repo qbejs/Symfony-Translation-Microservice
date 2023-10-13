@@ -2,10 +2,10 @@
 
 namespace App\Application\Translator\Service;
 
-use App\Application\Translator\Response\Translator\LockedResponse;
 use App\Domain\Interface\ServiceInterface;
 use App\Domain\Interface\TranslationRepositoryInterface;
 use App\Domain\Interface\Translator\TranslatorInterface;
+use App\Infrastructure\Response\Translator\LockedResponse;
 use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 use Symfony\Component\Lock\LockFactory;
 use Symfony\Component\Lock\Store\SemaphoreStore;
@@ -42,7 +42,7 @@ class TranslatorService implements ServiceInterface
         }
 
         if (0 == $attempts) {
-            return LockedResponse::response();
+            return new LockedResponse();
         }
 
         $translator = $this->getTranslator();

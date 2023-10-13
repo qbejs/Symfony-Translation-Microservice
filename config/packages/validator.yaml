@@ -1,5 +1,6 @@
 framework:
     validation:
+        enable_annotations: true
         email_validation_mode: html5
 
         # Enables validator auto-mapping support.
@@ -11,3 +12,4 @@ when@test:
     framework:
         validation:
             not_compromised_password: false
+            enable_annotations: true

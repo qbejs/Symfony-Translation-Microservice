@@ -54,6 +54,18 @@ services:
         App\Domain\Interface\Security\BlacklistManagerInterface:
             tags: [ 'app.blacklist.manager' ]
 
+    App\Infrastructure\EventSubscriber\ExceptionSubscriber:
+        public: true
+        arguments:
+            $logger: '@logger'
+            $responseHelper: '@App\Infrastructure\Helper\ResponseHelper'
+        tags:
+            - { name: kernel.event_subscriber, priority: 200 }
+
+    App\Infrastructure\Validator\ConstraintsValidator\CountryCodeValidator:
+        tags:
+            - { name: 'validator.constraint_validator' }
+
 
 
 
