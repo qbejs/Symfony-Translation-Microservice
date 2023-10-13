@@ -18,10 +18,11 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class LanguageController extends AbstractController
 {
-    public function __construct(private readonly MessageBusInterface $queryBus,
+    public function __construct(
+        private readonly MessageBusInterface $queryBus,
         private readonly SerializerInterface $serializer,
-        private readonly LanguageService $languageService)
-    {
+        private readonly LanguageService $languageService
+    ) {
     }
 
     #[Route(path: '/language/{id}', name: 'language.by.id', methods: ['GET'])]

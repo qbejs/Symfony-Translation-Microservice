@@ -36,7 +36,7 @@ jobs:
     -   name: Check code with php-cs-fixer
         run: |
             composer global require friendsofphp/php-cs-fixer
-            ~/.composer/vendor/bin/php-cs-fixer fix src/ --rules=@Symfony --dry-run
+            ~/.composer/vendor/bin/php-cs-fixer fix src/ --rules=@Symfony,@PSR12 --dry-run
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       # env:
       #   DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite

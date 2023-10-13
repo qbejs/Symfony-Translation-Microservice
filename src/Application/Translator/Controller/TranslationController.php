@@ -16,10 +16,11 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class TranslationController extends AbstractController
 {
-    public function __construct(private readonly MessageBusInterface $queryBus,
+    public function __construct(
+        private readonly MessageBusInterface $queryBus,
         private readonly TranslatorService $translationService,
-        private readonly SerializerInterface $serializer)
-    {
+        private readonly SerializerInterface $serializer
+    ) {
     }
 
     #[Route(path: '/translation', name: 'translation.all', methods: ['GET'])]

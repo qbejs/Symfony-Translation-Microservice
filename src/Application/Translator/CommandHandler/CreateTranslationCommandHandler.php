@@ -20,12 +20,13 @@ class CreateTranslationCommandHandler
     private EventDispatcherInterface $eventDispatcher;
     private LanguageRepositoryInterface $languageRepository;
 
-    public function __construct(TranslationFactoryInterface $translationFactory,
+    public function __construct(
+        TranslationFactoryInterface $translationFactory,
         TranslationRepositoryInterface $translationRepository,
         LanguageRepositoryInterface $languageRepository,
         EventDispatcherInterface $eventDispatcher,
-        private readonly TranslatorService $translatorService)
-    {
+        private readonly TranslatorService $translatorService
+    ) {
         $this->translationFactory = $translationFactory;
         $this->translationRepository = $translationRepository;
         $this->eventDispatcher = $eventDispatcher;
