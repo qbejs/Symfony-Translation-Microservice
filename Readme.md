@@ -4,7 +4,6 @@
 ![PHP-CS-Fixer](https://img.shields.io/badge/PHP--CS--Fixer-Coding%20Standards-blue.svg)
 ![Code Coverage](https://img.shields.io/badge/Code%20Coverage-Enabled-brightgreen.svg)
 
-
 Welcome to `Symfony-Translation-Microservice`! This is a simple translation microservice built with Symfony implementing DDD architecture.
 
 ## 🖥️ Technologies Used
