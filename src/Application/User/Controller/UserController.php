@@ -14,10 +14,11 @@ class UserController extends AbstractController
     public function __construct(private readonly MessageBusInterface $messageBus)
     {
     }
+
     #[Route(path: '/user', name: 'user', methods: ['GET'])]
     public function index(): Response
     {
-        return new Response("User", 200);
+        return new Response('User', 200);
     }
 
     #[Route(path: '/user/{id}', name: 'user_show', methods: ['GET'])]
@@ -30,6 +31,7 @@ class UserController extends AbstractController
     public function create(UserDTO $dto): Response
     {
         $this->messageBus->dispatch(new CreateUserCommand($dto->username, $dto->email, $dto->password));
-        return new Response("User created", 201);
+
+        return new Response('User created', 201);
     }
 }

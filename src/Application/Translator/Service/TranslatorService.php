@@ -24,7 +24,6 @@ class TranslatorService implements ServiceInterface
         $this->lockFactory = new LockFactory($store);
         $this->translators = $translators;
         $this->translationRepository = $translationRepository;
-
     }
 
     public function getResultFromMessage(Envelope $message): mixed
@@ -37,12 +36,12 @@ class TranslatorService implements ServiceInterface
         $lock = $this->lockFactory->createLock($text);
 
         $attempts = 3;
-        while(!$lock->acquire(true, 10) && $attempts > 0) {
+        while (!$lock->acquire(true, 10) && $attempts > 0) {
             sleep(0.5);
-            $attempts--;
+            --$attempts;
         }
 
-        if ($attempts == 0) {
+        if (0 == $attempts) {
             return LockedResponse::response();
         }
 
@@ -57,7 +56,7 @@ class TranslatorService implements ServiceInterface
 
     public function getTranslation(): string
     {
-        return "Translation";
+        return 'Translation';
     }
 
     public function getProviderName(): string

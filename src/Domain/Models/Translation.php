@@ -9,7 +9,6 @@ use App\Domain\Models\ValueObject\Translation\SourceText;
 use App\Domain\Models\ValueObject\Translation\Translated;
 use App\Domain\Models\ValueObject\Translation\TranslationId;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 class Translation implements TimestampInterface
 {
@@ -144,5 +143,4 @@ class Translation implements TimestampInterface
     {
         $this->translated = $translated;
     }
-
 }

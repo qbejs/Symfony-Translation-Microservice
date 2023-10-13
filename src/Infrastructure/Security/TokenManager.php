@@ -39,7 +39,6 @@ class TokenManager
     }
 
     /**
-     * @inheritDoc
      * @throws \Exception
      */
     public function create(UserInterface $user): string
@@ -50,7 +49,6 @@ class TokenManager
     }
 
     /**
-     * @inheritDoc
      * @throws \Exception
      */
     public function decode(TokenInterface $token): array
@@ -61,7 +59,6 @@ class TokenManager
     }
 
     /**
-     * @inheritDoc
      * @throws \Exception
      */
     public function setUserIdentityField($field): void
@@ -72,7 +69,6 @@ class TokenManager
     }
 
     /**
-     * @inheritDoc
      * @throws \Exception
      */
     public function getUserIdentityField(): string
@@ -83,7 +79,6 @@ class TokenManager
     }
 
     /**
-     * @inheritDoc
      * @throws \Exception
      */
     public function getUserIdClaim(): string
@@ -112,5 +107,4 @@ class TokenManager
 
         return $adapter->parse($token);
     }
-
 }

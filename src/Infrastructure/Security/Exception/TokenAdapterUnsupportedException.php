@@ -2,7 +2,6 @@
 
 namespace App\Infrastructure\Security\Exception;
 
-
 class TokenAdapterUnsupportedException extends \Exception
 {
     public function __construct()

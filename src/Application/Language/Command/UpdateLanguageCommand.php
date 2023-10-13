@@ -8,7 +8,7 @@ class UpdateLanguageCommand
     public ?string $name;
     public ?string $code;
 
-    public function __construct(int $id, ?string $name = null, ?string $code = null)
+    public function __construct(int $id, string $name = null, string $code = null)
     {
         $this->id = $id;
         $this->name = $name;

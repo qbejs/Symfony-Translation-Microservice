@@ -4,7 +4,6 @@ namespace App\Domain\Models\ValueObject\Translation\Normalizer;
 
 use App\Domain\Models\Normalizer\AbstractValueObjectNormalizer;
 use App\Domain\Models\ValueObject\Translation\SourceText;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class SourceTextNormalizer extends AbstractValueObjectNormalizer
 {

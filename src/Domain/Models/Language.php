@@ -8,7 +8,6 @@ use App\Domain\Models\ValueObject\Language\LanguageId;
 use App\Domain\Models\ValueObject\Language\LanguageName;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 class Language
 {

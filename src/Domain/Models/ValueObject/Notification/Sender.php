@@ -15,5 +15,4 @@ class Sender
     {
         return $this->sender;
     }
-
 }

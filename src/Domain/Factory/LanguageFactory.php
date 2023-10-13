@@ -11,11 +11,6 @@ use App\Domain\Models\ValueObject\Language\LanguageName;
 
 class LanguageFactory implements LanguageFactoryInterface
 {
-    /**
-     *
-     * @param LanguageDTO $dto
-     * @return Language
-     */
     public function createFromDTO(LanguageDTO $dto): Language
     {
         $name = new LanguageName($dto->name);
@@ -25,13 +20,6 @@ class LanguageFactory implements LanguageFactoryInterface
         return new Language(null, $name, $code, $availability);
     }
 
-    /**
-     *
-     * @param string|null $name
-     * @param string|null $code
-     * @param LanguageAvailability|null $availability
-     * @return Language
-     */
     public function create(string $name = null, string $code = null, LanguageAvailability $availability = null): Language
     {
         return new Language(null, new LanguageName($name), new LanguageCode($code), $availability);

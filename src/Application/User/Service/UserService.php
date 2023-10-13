@@ -16,9 +16,9 @@ class UserService implements ServiceInterface
     public function __construct(
         private readonly UserRepositoryInterface $userRepository,
         private readonly UserPasswordHasherInterface $userPasswordHasher
-    )
-    {
+    ) {
     }
+
     public function getResultFromMessage(Envelope $message): mixed
     {
         return $message->last(HandledStamp::class)->getResult();

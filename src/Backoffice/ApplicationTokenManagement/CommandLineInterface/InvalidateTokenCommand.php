@@ -22,5 +22,4 @@ class InvalidateTokenCommand extends Command
 
         return Command::SUCCESS;
     }
-
 }

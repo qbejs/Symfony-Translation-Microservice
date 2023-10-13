@@ -4,7 +4,6 @@ namespace App\Domain\Models\ValueObject\Language;
 
 class LanguageId
 {
-
     private int $id;
 
     public function __construct(int $id)

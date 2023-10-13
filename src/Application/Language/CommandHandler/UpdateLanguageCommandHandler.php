@@ -7,9 +7,7 @@ use App\Application\Language\Event\LanguageUpdatedEvent;
 use App\Domain\Interface\LanguageRepositoryInterface;
 use App\Domain\Models\ValueObject\Language\LanguageCode;
 use App\Domain\Models\ValueObject\Language\LanguageName;
-use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 #[AsMessageHandler]

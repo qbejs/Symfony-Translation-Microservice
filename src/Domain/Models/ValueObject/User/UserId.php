@@ -5,6 +5,7 @@ namespace App\Domain\Models\ValueObject\User;
 class UserId
 {
     private int $id;
+
     public function __construct(int $id)
     {
         if ($id < 1) {
@@ -13,7 +14,6 @@ class UserId
 
         $this->id = $id;
     }
-
 
     public function getValue(): string
     {
