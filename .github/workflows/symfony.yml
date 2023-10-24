@@ -41,12 +41,24 @@ jobs:
                 # env:
                 #   DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
                 run: vendor/bin/phpunit
-#            -   name: Setup SSH Key
-#                uses: webfactory/ssh-agent@v0.5.3
-#                with:
-#                    ssh-private-key: ${{ secrets.HETZNER_SSH_KEY }}
-#            -   name: Add remote host to known_hosts
-#                run: ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+            -   name: Setup SSH Key
+                uses: webfactory/ssh-agent@v0.5.3
+                with:
+                    ssh-private-key: ${{ secrets.HETZNER_SSH_KEY }}
+            -   name: Add remote host to known_hosts
+                run: ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+            -   name: Clone and Deploy
+                run: |
+                        ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "
+                            if [ ! -d \"${{ secrets.APP_PATH }}\" ]; then
+                                git clone https://github.com/qbejs/Symfony-Translation-Microservice.git ${{ secrets.APP_PATH }}
+                            else
+                                cd ${{ secrets.APP_PATH }}
+                                git pull
+                            fi
+                            cd ${{ secrets.APP_PATH }}
+                            docker-compose -f .docker/docker-compose.yml up -d
+                        "
 #            -   name: Deploy
 #                run: |
 #                    scp -r $(pwd)/* ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:${{ secrets.APP_PATH }}
