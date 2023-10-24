@@ -21,6 +21,7 @@ services:
             - '../src/Application/'
             - '../src/Domain/'
             - '../src/Infrastructure/'
+            - '../src/UI/'
 
     App\Application\:
         resource: '../src/Application/*'
