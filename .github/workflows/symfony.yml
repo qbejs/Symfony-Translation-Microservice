@@ -51,4 +51,3 @@ jobs:
 #                run: |
 #                    scp -r $(pwd)/* ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:${{ secrets.APP_PATH }}
 #                    ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "cd ${{ secrets.APP_PATH }} && docker-compose -f .docker/docker-compose.yml up -d"
-
