@@ -1,43 +1,52 @@
 name: Symfony
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    push:
+        branches: [ "master" ]
+    pull_request:
+        branches: [ "master" ]
 
 permissions:
-  contents: read
+    contents: read
 
 jobs:
-  symfony-tests:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
-      with:
-        php-version: '8.1'
-    - uses: actions/checkout@v3
-    - name: Copy and Rename .env.test to .env
-      run: cp .env.test .env
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
-    - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-    # - name: Create Database and load fixtures
-    #   run: |
-    #     mkdir -p data
-    #     touch data/database.sqlite
-    -   name: Check code with php-cs-fixer
-        run: |
-            composer global require friendsofphp/php-cs-fixer
-            ~/.composer/vendor/bin/php-cs-fixer fix src/ --rules=@Symfony,@PSR12 --dry-run
-    - name: Execute tests (Unit and Feature tests) via PHPUnit
-      # env:
-      #   DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
-      run: vendor/bin/phpunit
+    symfony-tests:
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
+                with:
+                    php-version: '8.1'
+            -   uses: actions/checkout@v3
+            -   name: Copy and Rename .env.test to .env
+                run: cp .env.test .env
+            -   name: Cache Composer packages
+                id: composer-cache
+                uses: actions/cache@v3
+                with:
+                    path: vendor
+                    key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+                    restore-keys: |
+                        ${{ runner.os }}-php-
+            -   name: Install Dependencies
+                run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+            # - name: Create Database and load fixtures
+            #   run: |
+            #     mkdir -p data
+            #     touch data/database.sqlite
+            -   name: Check code with php-cs-fixer
+                run: |
+                    composer global require friendsofphp/php-cs-fixer
+                    ~/.composer/vendor/bin/php-cs-fixer fix src/ --rules=@Symfony,@PSR12 --dry-run
+            -   name: Execute tests (Unit and Feature tests) via PHPUnit
+                # env:
+                #   DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
+                run: vendor/bin/phpunit
+            -   name: Setup SSH Key
+                uses: webfactory/ssh-agent@v0.5.3
+                with:
+                    ssh-private-key: ${{ secrets.HETZNER_SSH_KEY }}
+
+            -   name: Deploy
+                run: |
+                    scp -r . {{ secrets.SERVER_USER}}@{{ secrets.SERVER_IP }}:{{ secrets.APP_PATH }}
+                    ssh {{ secrets.SERVER_USER }}@{{ secrets.SERVER_IP }} "cd {{ secrets.APP_PATH }} && docker-compose -f .docker/docker-compose.yml up -d"
