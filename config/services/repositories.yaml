@@ -14,3 +14,8 @@ services:
         class: App\Infrastructure\Repository\Doctrine\UserRepository
         arguments:
             $entityManager: '@doctrine.orm.entity_manager'
+
+    App\Domain\Interface\NotificationTypeRepositoryInterface:
+        class: App\Infrastructure\Repository\Doctrine\NotificationTypeRepository
+        arguments:
+            $entityManager: '@doctrine.orm.entity_manager'
