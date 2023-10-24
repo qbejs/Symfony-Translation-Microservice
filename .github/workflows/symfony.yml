@@ -53,6 +53,7 @@ jobs:
                             cd ${{ secrets.APP_PATH }}
                             git clone https://github.com/qbejs/Symfony-Translation-Microservice.git .
                             cd ${{ secrets.APP_PATH }}
+                            
                             docker compose -f .docker/docker-compose.yml up -d
                         "
 #            -   name: Deploy
