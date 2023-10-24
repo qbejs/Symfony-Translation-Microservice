@@ -2,8 +2,8 @@
 
 namespace App\Domain\Factory;
 
-use App\Application\User\DTO\UserDTO;
 use App\Domain\Factory\Interface\UserFactoryInterface;
+use App\Domain\Models\DTO\UserDTO;
 use App\Domain\Models\User;
 use App\Domain\Models\ValueObject\User\Email;
 use App\Domain\Models\ValueObject\User\Password;

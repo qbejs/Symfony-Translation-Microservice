@@ -3,10 +3,10 @@
 namespace App\Application\Translator\Controller;
 
 use App\Application\Translator\Command\CreateTranslationCommand;
-use App\Application\Translator\DTO\TranslationDTO;
 use App\Application\Translator\Query\GetTranslationByIdQuery;
 use App\Application\Translator\Query\GetTranslationsQuery;
 use App\Application\Translator\Service\TranslatorService;
+use App\Domain\Models\DTO\TranslationDTO;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;

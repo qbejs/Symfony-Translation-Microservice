@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\User\DTO;
+namespace App\Domain\Models\DTO;
 
 use Prugala\RequestDto\Dto\RequestDtoInterface;
 

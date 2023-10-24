@@ -2,7 +2,7 @@
 
 namespace App\Domain\Factory\Interface;
 
-use App\Application\Language\DTO\LanguageDTO;
+use App\Domain\Models\DTO\LanguageDTO;
 use App\Domain\Models\Language;
 use App\Domain\Models\ValueObject\Language\LanguageAvailability;
 
