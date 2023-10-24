@@ -49,6 +49,6 @@ jobs:
                 run: ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
             -   name: Deploy
                 run: |
-                    scp -r . ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:${{ secrets.APP_PATH }}
+                    scp -r $(pwd)/* ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:${{ secrets.APP_PATH }}
                     ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "cd ${{ secrets.APP_PATH }} && docker-compose -f .docker/docker-compose.yml up -d"
 
