@@ -4,9 +4,8 @@ namespace App\Application\Translator\Service;
 
 use App\Domain\Interface\ServiceInterface;
 use App\Domain\Interface\TranslationRepositoryInterface;
-use App\Domain\Interface\Translator\TranslatorInterface;
 use App\Infrastructure\Response\Translator\LockedResponse;
-use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
+use App\Infrastructure\TranslatorEngine\TranslationEngineManager;
 use Symfony\Component\Lock\LockFactory;
 use Symfony\Component\Lock\Store\SemaphoreStore;
 use Symfony\Component\Messenger\Envelope;
@@ -14,16 +13,12 @@ use Symfony\Component\Messenger\Stamp\HandledStamp;
 
 class TranslatorService implements ServiceInterface
 {
-    private iterable $translators;
     private LockFactory $lockFactory;
-    private TranslationRepositoryInterface $translationRepository;
 
-    public function __construct(#[TaggedIterator('app.translator.provider')] iterable $translators, TranslationRepositoryInterface $translationRepository)
+    public function __construct(TranslationRepositoryInterface $translationRepository, private readonly TranslationEngineManager $translationEngineManager)
     {
         $store = new SemaphoreStore();
         $this->lockFactory = new LockFactory($store);
-        $this->translators = $translators;
-        $this->translationRepository = $translationRepository;
     }
 
     public function getResultFromMessage(Envelope $message): mixed
@@ -31,6 +26,9 @@ class TranslatorService implements ServiceInterface
         return $message->last(HandledStamp::class)->getResult();
     }
 
+    /**
+     * @throws \Exception
+     */
     public function createTranslation(string $source, string $target, string $text): string
     {
         $lock = $this->lockFactory->createLock($text);
@@ -45,13 +43,7 @@ class TranslatorService implements ServiceInterface
             return new LockedResponse();
         }
 
-        $translator = $this->getTranslator();
-
-        if (!$translator) {
-            throw new \Exception('No translator found');
-        }
-
-        return $translator->translate($source, $target, $text);
+        return $this->translationEngineManager->translate($source, $target, $text);
     }
 
     public function getTranslation(): string
@@ -61,29 +53,6 @@ class TranslatorService implements ServiceInterface
 
     public function getProviderName(): string
     {
-        return $this->getTranslator()?->getName() ?? 'No provider found';
-    }
-
-    private function getTranslator(): ?TranslatorInterface
-    {
-        /** @var TranslatorInterface $translator */
-        foreach ($this->translators as $translator) {
-            if ($translator->isSupported()) {
-                return $translator;
-            }
-        }
-
-        return null;
-    }
-
-    private function useExternalTranslationService(string $source, string $target, string $text): string
-    {
-        $translator = $this->getTranslator();
-
-        if (!$translator) {
-            throw new \Exception('No translator found');
-        }
-
-        return $translator->translate($source, $target, $text);
+        return $this->translationEngineManager->getProviderName();
     }
 }

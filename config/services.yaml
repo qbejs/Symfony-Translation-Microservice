@@ -11,6 +11,7 @@ parameters:
     sms.serwersms.token: '%env(SMS_SERWERSMS_TOKEN)%'
     sms.smsapi.token: '%env(SMS_SMSAPI_TOKEN)%'
     sms.default.provider: '%env(SMS_DEFAULT_PROVIDER)%'
+    translator.default.provider: '%env(TRANSLATOR_DEFAULT_PROVIDER)%'
 
 
 services:
@@ -93,6 +94,10 @@ services:
     App\Infrastructure\Notifier\Adapters\Providers\SmsNotificationProvider:
         arguments:
             $defaultProvider: '%sms.default.provider%'
+
+    App\Infrastructure\TranslatorEngine\TranslationEngineManager:
+        arguments:
+            $defaultProvider: '%translator.default.provider%'
 
 
 

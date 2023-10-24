@@ -6,7 +6,7 @@ interface TranslatorInterface
 {
     public function translate(string $source, string $target, string $text): string;
 
-    public function isSupported(): bool;
+    public function isSupported(string $name): bool;
 
     public function getName(): string;
 }
