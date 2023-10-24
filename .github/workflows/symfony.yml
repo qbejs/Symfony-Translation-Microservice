@@ -57,6 +57,7 @@ jobs:
                                 git pull
                             fi
                             cd ${{ secrets.APP_PATH }}
+                            
                             docker compose -f .docker/docker-compose.yml up -d
                         "
 #            -   name: Deploy
