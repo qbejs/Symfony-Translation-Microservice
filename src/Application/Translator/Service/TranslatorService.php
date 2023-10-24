@@ -3,7 +3,6 @@
 namespace App\Application\Translator\Service;
 
 use App\Domain\Interface\ServiceInterface;
-use App\Domain\Interface\TranslationRepositoryInterface;
 use App\Infrastructure\Response\Translator\LockedResponse;
 use App\Infrastructure\TranslatorEngine\TranslationEngineManager;
 use Symfony\Component\Lock\LockFactory;
@@ -15,7 +14,7 @@ class TranslatorService implements ServiceInterface
 {
     private LockFactory $lockFactory;
 
-    public function __construct(TranslationRepositoryInterface $translationRepository, private readonly TranslationEngineManager $translationEngineManager)
+    public function __construct(private readonly TranslationEngineManager $translationEngineManager)
     {
         $store = new SemaphoreStore();
         $this->lockFactory = new LockFactory($store);

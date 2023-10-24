@@ -2,14 +2,17 @@
 
 namespace App\Application\User\CommandHandler;
 
+use App\Application\Backoffice\Notificator\Event\DispatchNotificationEvent;
 use App\Application\User\Command\CreateUserCommand;
 use App\Application\User\Service\UserService;
+use App\Infrastructure\Notifier\SupportedNotificationTypesEnum;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 #[AsMessageHandler]
 class CreateUserCommandHandler
 {
-    public function __construct(private readonly UserService $userService)
+    public function __construct(private readonly UserService $userService, private readonly EventDispatcherInterface $eventDispatcher)
     {
     }
 
@@ -21,6 +24,11 @@ class CreateUserCommandHandler
             throw new \Exception('User not created');
         }
 
-        // Dispatch event for user created notification
+        $this->eventDispatcher->dispatch(new DispatchNotificationEvent(
+            SupportedNotificationTypesEnum::EMAIL->value,
+            'user_created',
+            $command->email,
+            ['username' => $command->username, 'id' => $user->getId()]
+        ), 'notification.dispatched');
     }
 }
