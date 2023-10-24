@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\Language\Controller;
+namespace App\UI\Controller;
 
 use App\Application\Language\Command\CreateLanguageCommand;
 use App\Application\Language\Command\UpdateLanguageCommand;

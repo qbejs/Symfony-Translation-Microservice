@@ -1,12 +1,4 @@
 services:
-    App\Application\Language\Controller\:
-        resource: '../../src/Application/Language/Controller/'
-        tags: [ 'controller.service_arguments' ]
-
-    App\Application\Translator\Controller\:
-        resource: '../../src/Application/Translator/Controller/'
-        tags: [ 'controller.service_arguments' ]
-
-    App\Application\User\Controller\:
-        resource: '../../src/Application/User/Controller/'
+    App\UI\Controller\:
+        resource: '../../src/UI/Controller/'
         tags: [ 'controller.service_arguments' ]
