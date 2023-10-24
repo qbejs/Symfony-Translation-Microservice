@@ -6,6 +6,12 @@ imports:
     - { resource: 'services/security.yaml'}
 
 parameters:
+    telegram.base_uri: '%env(TELEGRAM_BASE_URI)%'
+    telegram.bot_token: '%env(TELEGRAM_BOT_TOKEN)%'
+    sms.serwersms.token: '%env(SMS_SERWERSMS_TOKEN)%'
+    sms.smsapi.token: '%env(SMS_SMSAPI_TOKEN)%'
+    sms.default.provider: '%env(SMS_DEFAULT_PROVIDER)%'
+
 
 services:
     _defaults:
@@ -54,6 +60,10 @@ services:
             tags: [ 'app.token.manager' ]
         App\Domain\Interface\Security\BlacklistManagerInterface:
             tags: [ 'app.blacklist.manager' ]
+        App\Domain\Interface\Notification\SmsProviderInterface:
+            tags: [ 'app.sms.provider' ]
+        App\Domain\Interface\Notification\NotificationProviderInterface:
+            tags: [ 'app.notification.provider' ]
 
     App\Infrastructure\EventSubscriber\ExceptionSubscriber:
         public: true
@@ -67,8 +77,22 @@ services:
         tags:
             - { name: 'validator.constraint_validator' }
 
+    App\Infrastructure\Notifier\Adapters\Providers\TelegramNotificationProvider:
+        arguments:
+            $baseUri: '%telegram.base_uri%'
+            $botToken: '%telegram.bot_token%'
 
+    App\Infrastructure\Notifier\Adapters\Providers\SmsProviders\SerwerSmsProvider:
+        arguments:
+            $token: '%sms.serwersms.token%'
 
+    App\Infrastructure\Notifier\Adapters\Providers\SmsProviders\SmsApiProvider:
+        arguments:
+            $token: '%sms.smsapi.token%'
+
+    App\Infrastructure\Notifier\Adapters\Providers\SmsNotificationProvider:
+        arguments:
+            $defaultProvider: '%sms.default.provider%'
 
 
 
