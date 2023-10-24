@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\Translator\Controller;
+namespace App\UI\Controller;
 
 use App\Application\Translator\Command\CreateTranslationCommand;
 use App\Application\Translator\Query\GetTranslationByIdQuery;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\User\Controller;
+namespace App\UI\Controller;
 
 use App\Application\User\Command\CreateUserCommand;
 use App\Domain\Models\DTO\UserDTO;
