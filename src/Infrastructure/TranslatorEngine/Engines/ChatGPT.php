@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Application\Translator\Providers;
+namespace App\Infrastructure\TranslatorEngine\Engines;
 
 use App\Domain\Interface\Translator\TranslatorInterface;
 
-class GoogleTranslate implements TranslatorInterface
+class ChatGPT implements TranslatorInterface
 {
     public function translate(string $source, string $target, string $text): string
     {
-        return 'Google Translate, please translate text - '.$text.' - from '.$source.' to '.$target;
+        return 'Hey, ChatGPT, please translate text - '.$text.' - from '.$source.' to '.$target;
     }
 
-    public function isSupported(): bool
+    public function isSupported(string $name): bool
     {
-        return true;
+        return 'chatgpt' === $name;
     }
 
     public function getName(): string
