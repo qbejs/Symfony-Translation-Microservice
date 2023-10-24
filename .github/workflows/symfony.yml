@@ -10,7 +10,7 @@ permissions:
     contents: read
 
 jobs:
-    symfony-tests:
+    symfony-pipeline:
         runs-on: ubuntu-latest
         steps:
             -   uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
@@ -45,8 +45,8 @@ jobs:
                 uses: webfactory/ssh-agent@v0.5.3
                 with:
                     ssh-private-key: ${{ secrets.HETZNER_SSH_KEY }}
-
             -   name: Deploy
                 run: |
-                    scp -r . {{ secrets.SERVER_USER}}@{{ secrets.SERVER_IP }}:{{ secrets.APP_PATH }}
-                    ssh {{ secrets.SERVER_USER }}@{{ secrets.SERVER_IP }} "cd {{ secrets.APP_PATH }} && docker-compose -f .docker/docker-compose.yml up -d"
+                    scp -r . ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:${{ secrets.APP_PATH }}
+                    ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "cd ${{ secrets.APP_PATH }} && docker-compose -f .docker/docker-compose.yml up -d"
+
