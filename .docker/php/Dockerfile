@@ -3,6 +3,7 @@ ARG TIMEZONE
 
 COPY php.ini /usr/local/etc/php/conf.d/docker-php-config.ini
 
+# Install required packages
 RUN apt-get update && apt-get install -y \
     gnupg \
     g++ \
@@ -20,28 +21,40 @@ RUN apt-get update && apt-get install -y \
     libxslt1-dev \
     acl \
     librabbitmq-dev \
-    && pecl install amqp \
-    && echo 'alias sf="php bin/console"' >> ~/.bashrc
+    libcurl4-openssl-dev \
+    libssl-dev
 
-RUN docker-php-ext-enable amqp
-
+# Install and enable PHP extensions
+RUN pecl install amqp && docker-php-ext-enable amqp
 RUN pecl install redis && docker-php-ext-enable redis
+RUN docker-php-ext-configure gd --with-jpeg --with-freetype
+RUN docker-php-ext-install pdo \
+    pdo_mysql  \
+    zip  \
+    xsl  \
+    gd  \
+    intl \
+    opcache \
+    exif \
+    mbstring \
+    sysvsem \
+    sockets
+RUN pecl install raphf \
+    && docker-php-ext-enable raphf
+#RUN docker-php-ext-enable propro
+#RUN docker-php-ext-enable http
 
-RUN docker-php-ext-configure gd --with-jpeg --with-freetype 
-
-RUN docker-php-ext-install \
-    pdo pdo_mysql zip xsl gd intl opcache exif mbstring sysvsem sockets
-
-# Install Xdebug and enable it for code coverage
 RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug \
+    && docker-php-ext-enable xdebug  \
     && echo "xdebug.mode=coverage" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-# Set timezone
-RUN ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && echo ${TIMEZONE} > /etc/timezone \
-    && printf '[PHP]\ndate.timezone = "%s"\n', ${TIMEZONE} > /usr/local/etc/php/conf.d/tzone.ini \
-    && "date"
+# Set aliases and timezone
+RUN echo 'alias sf="php bin/console"' >> ~/.bashrc \
+    && ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime \
+    && echo ${TIMEZONE} > /etc/timezone \
+    && printf '[PHP]\ndate.timezone = "%s"\n', ${TIMEZONE} > /usr/local/etc/php/conf.d/tzone.ini
 
+# Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www/symfony

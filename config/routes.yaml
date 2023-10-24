@@ -1,13 +1,13 @@
 language_module:
-    resource: '../src/Application/Language/Controller/'
+    resource: '../src/UI/Controller/'
     type: attribute
 
 translator_module:
-    resource: '../src/Application/Translator/Controller/'
+    resource: '../src/UI/Controller/'
     type: attribute
 
 user_module:
-    resource: '../src/Application/User/Controller/'
+    resource: '../src/UI/Controller/'
     type: attribute
 
 api_login_check:
