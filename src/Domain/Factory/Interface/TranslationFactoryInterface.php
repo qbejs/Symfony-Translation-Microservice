@@ -2,7 +2,7 @@
 
 namespace App\Domain\Factory\Interface;
 
-use App\Application\Translator\DTO\TranslationDTO;
+use App\Domain\Models\DTO\TranslationDTO;
 use App\Domain\Models\Translation;
 
 interface TranslationFactoryInterface

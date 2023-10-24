@@ -3,7 +3,7 @@
 namespace App\Application\User\Controller;
 
 use App\Application\User\Command\CreateUserCommand;
-use App\Application\User\DTO\UserDTO;
+use App\Domain\Models\DTO\UserDTO;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;

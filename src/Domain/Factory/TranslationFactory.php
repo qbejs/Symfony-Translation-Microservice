@@ -2,9 +2,9 @@
 
 namespace App\Domain\Factory;
 
-use App\Application\Translator\DTO\TranslationDTO;
 use App\Domain\Factory\Interface\TranslationFactoryInterface;
 use App\Domain\Interface\LanguageRepositoryInterface;
+use App\Domain\Models\DTO\TranslationDTO;
 use App\Domain\Models\Language;
 use App\Domain\Models\Translation;
 use App\Domain\Models\ValueObject\Language\LanguageId;

@@ -2,8 +2,8 @@
 
 namespace App\Domain\Factory;
 
-use App\Application\Language\DTO\LanguageDTO;
 use App\Domain\Factory\Interface\LanguageFactoryInterface;
+use App\Domain\Models\DTO\LanguageDTO;
 use App\Domain\Models\Language;
 use App\Domain\Models\ValueObject\Language\LanguageAvailability;
 use App\Domain\Models\ValueObject\Language\LanguageCode;

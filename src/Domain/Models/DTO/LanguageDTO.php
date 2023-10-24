@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\Language\DTO;
+namespace App\Domain\Models\DTO;
 
 use App\Infrastructure\Validator\Constraint\LanguageCode;
 use Prugala\RequestDto\Dto\RequestDtoInterface;

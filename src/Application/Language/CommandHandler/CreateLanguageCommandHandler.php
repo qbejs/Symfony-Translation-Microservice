@@ -3,10 +3,10 @@
 namespace App\Application\Language\CommandHandler;
 
 use App\Application\Language\Command\CreateLanguageCommand;
-use App\Application\Language\DTO\LanguageDTO;
 use App\Application\Language\Event\LanguageCreatedEvent;
 use App\Domain\Factory\LanguageFactory;
 use App\Domain\Interface\LanguageRepositoryInterface;
+use App\Domain\Models\DTO\LanguageDTO;
 use App\Infrastructure\Repository\Doctrine\LanguageRepository;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;

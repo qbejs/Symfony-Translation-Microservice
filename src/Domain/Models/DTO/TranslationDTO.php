@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\Translator\DTO;
+namespace App\Domain\Models\DTO;
 
 use Prugala\RequestDto\Dto\RequestDtoInterface;
 use Symfony\Component\Validator\Constraints as Assert;

@@ -2,7 +2,7 @@
 
 namespace App\Tests\Unit\DTO;
 
-use App\Application\Translator\DTO\TranslationDTO;
+use App\Domain\Models\DTO\TranslationDTO;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 

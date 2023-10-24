@@ -2,7 +2,7 @@
 
 namespace App\Domain\Factory\Interface;
 
-use App\Application\User\DTO\UserDTO;
+use App\Domain\Models\DTO\UserDTO;
 use App\Domain\Models\User;
 
 interface UserFactoryInterface

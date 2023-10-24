@@ -3,12 +3,12 @@
 namespace App\Application\Translator\CommandHandler;
 
 use App\Application\Translator\Command\CreateTranslationCommand;
-use App\Application\Translator\DTO\TranslationDTO;
 use App\Application\Translator\Event\TranslationCreatedEvent;
 use App\Application\Translator\Service\TranslatorService;
 use App\Domain\Factory\Interface\TranslationFactoryInterface;
 use App\Domain\Interface\LanguageRepositoryInterface;
 use App\Domain\Interface\TranslationRepositoryInterface;
+use App\Domain\Models\DTO\TranslationDTO;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 

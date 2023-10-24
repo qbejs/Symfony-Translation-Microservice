@@ -2,14 +2,13 @@
 
 namespace App\Tests\Unit;
 
-use App\Application\Language\DTO\LanguageDTO;
-use App\Application\Translator\DTO\TranslationDTO;
-use App\Application\Translator\Event\TranslationCreatedEvent;
 use App\Application\Translator\Service\TranslatorService;
 use App\Domain\Factory\LanguageFactory;
 use App\Domain\Factory\TranslationFactory;
 use App\Domain\Interface\LanguageRepositoryInterface;
 use App\Domain\Interface\TranslationRepositoryInterface;
+use App\Domain\Models\DTO\LanguageDTO;
+use App\Domain\Models\DTO\TranslationDTO;
 use App\Domain\Models\Language;
 use App\Domain\Models\Translation;
 use App\Domain\Models\ValueObject\Language\LanguageAvailability;
@@ -20,8 +19,6 @@ use App\Domain\Models\ValueObject\Translation\SourceText;
 use App\Domain\Models\ValueObject\Translation\Translated;
 use App\Domain\Models\ValueObject\Translation\TranslationId;
 use App\Infrastructure\Repository\Doctrine\LanguageRepository;
-use PHPUnit\Framework\MockObject\MockClass;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
