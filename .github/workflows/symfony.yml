@@ -50,12 +50,8 @@ jobs:
             -   name: Clone and Deploy
                 run: |
                         ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "
-                            if [ ! -d \"${{ secrets.APP_PATH }}\" ]; then
-                                git clone https://github.com/qbejs/Symfony-Translation-Microservice.git ${{ secrets.APP_PATH }}
-                            else
-                                cd ${{ secrets.APP_PATH }}
-                                git pull
-                            fi
+                            cd ${{ secrets.APP_PATH }}
+                            git clone https://github.com/qbejs/Symfony-Translation-Microservice.git .
                             cd ${{ secrets.APP_PATH }}
                             docker compose -f .docker/docker-compose.yml up -d
                         "
