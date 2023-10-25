@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\Backoffice\Notificator\Event;
+namespace App\Infrastructure\EventSubscriber\Backoffice\Notificator\Event;
 
 class DispatchNotificationEvent
 {

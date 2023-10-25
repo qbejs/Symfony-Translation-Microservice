@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Application\Backoffice\Notificator\Listener;
+namespace App\Infrastructure\EventSubscriber\Backoffice\Notificator\Listener;
 
-use App\Application\Backoffice\Notificator\Event\DispatchNotificationEvent;
 use App\Domain\Interface\NotificationTypeRepositoryInterface;
 use App\Domain\Models\NotificationType;
+use App\Infrastructure\EventSubscriber\Backoffice\Notificator\Event\DispatchNotificationEvent;
 use App\Infrastructure\Notifier\NotifierManager;
 use App\Infrastructure\Notifier\SupportedNotificationTypesEnum;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
