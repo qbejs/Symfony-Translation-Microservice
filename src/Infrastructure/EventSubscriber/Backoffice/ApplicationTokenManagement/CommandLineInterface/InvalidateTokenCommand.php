@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\Backoffice\ApplicationTokenManagement\CommandLineInterface;
+namespace App\Infrastructure\EventSubscriber\Backoffice\ApplicationTokenManagement\CommandLineInterface;
 
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
