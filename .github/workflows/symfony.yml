@@ -38,6 +38,8 @@ jobs:
                     composer global require friendsofphp/php-cs-fixer
                     ~/.composer/vendor/bin/php-cs-fixer fix src/ --rules=@Symfony,@PSR12 --dry-run
             -   uses: sonarsource/sonarqube-scan-action@master
+                with:
+                    args: -Dsonar.projectKey=qbejs_Symfony-Translation-Microservice_AYtmZU10GyTIAzdhe8H6
                 env:
                     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
                     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
